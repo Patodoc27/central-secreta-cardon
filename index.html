@@ -359,10 +359,14 @@ table.cmpT thead th{font-family:var(--f-disp);font-size:1.05rem}
 table.cmpT thead th:nth-child(2){color:var(--cloro)}table.cmpT thead th:nth-child(3){color:var(--mito)}
 table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22%}
 /* Pregunta-guía que conecta el montaje con la respiración celular */
-.lab-pregunta-foco{display:flex;flex-direction:column;gap:8px;padding:18px 20px;border-radius:15px;background:linear-gradient(120deg,#203350,#14243b);border:2px solid var(--agua)}
-.lab-pregunta-foco span{font:700 .76rem var(--f-dato);letter-spacing:.09em;color:var(--agua)}
-.lab-pregunta-foco strong{font:800 clamp(1.25rem,2.5vw,1.65rem)/1.25 var(--f-disp);color:#f5f8ff}
-.lab-pregunta-foco small{font-size:.91rem;color:#c6dbeb}
+.lab-pregunta-foco{position:relative;display:flex;flex-direction:column;gap:10px;padding:24px 26px;border-radius:16px;overflow:hidden;background:radial-gradient(130% 170% at 8% -10%,rgba(255,181,71,.24),rgba(255,181,71,0) 55%),linear-gradient(120deg,#263f66,#14243b);border:2px solid var(--sol);box-shadow:0 0 0 4px rgba(255,181,71,.10),0 10px 34px rgba(255,181,71,.22);animation:focoLuz 3.4s ease-in-out infinite}
+@keyframes focoLuz{0%,100%{box-shadow:0 0 0 4px rgba(255,181,71,.10),0 10px 30px rgba(255,181,71,.20)}50%{box-shadow:0 0 0 6px rgba(255,181,71,.17),0 10px 46px rgba(255,181,71,.36)}}
+.lab-pregunta-foco::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.10),rgba(255,255,255,0) 40%)}
+.lab-pregunta-foco>span{display:flex;align-items:center;gap:9px;font:700 .8rem var(--f-dato);letter-spacing:.1em;color:var(--sol)}
+.lab-pregunta-foco>span svg{flex:0 0 auto;width:19px;height:19px}
+.lab-pregunta-foco>strong{font:800 clamp(1.4rem,3vw,1.9rem)/1.22 var(--f-disp);color:#fff;text-shadow:0 0 18px rgba(255,181,71,.35)}
+.lab-pregunta-foco>small{font-size:.94rem;color:#d7e7f4}
+@media (prefers-reduced-motion:reduce){.lab-pregunta-foco{animation:none}}
 /* tubos */
 .montaje-lab{gap:16px}
 .montaje-lab__intro{margin:0}
@@ -757,7 +761,7 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
     <div class="guia"><div class="guia__av">L</div><div class="guia__t"><small>Lucía · guía del Jardín</small>El cardón respira en sus células durante el día y la noche. Pero ¿cómo podemos buscar una evidencia de que una planta sigue respirando cuando no recibe luz? Como el dióxido de carbono no se ve, usaremos un indicador: un líquido azul que se vuelve verde y después amarillo cuando en el agua se acumula dióxido de carbono. Usaremos elodea, una planta acuática, como modelo para investigar esta idea y después relacionarla con el cardón.</div></div>
 
     <div class="bloque">
-      <div class="lab-pregunta-foco"><span>DESAFÍO CIENTÍFICO · RESPIRACIÓN CELULAR</span><strong>¿Qué evidencias podemos obtener de que una planta realiza respiración celular incluso cuando no recibe luz?</strong><small>Buscamos una pista: el cambio de color del agua cuando se acumula el dióxido de carbono que se libera en la respiración celular.</small></div>
+      <div class="lab-pregunta-foco"><span><svg viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3.4"><circle cx="17" cy="16" r="10"/><path d="M25 24 L34 33" stroke-linecap="round"/></svg>PREGUNTA DE INVESTIGACIÓN · DESAFÍO CIENTÍFICO</span><strong>¿Qué evidencias podemos obtener de que una planta realiza respiración celular incluso cuando no recibe luz?</strong><small>Buscamos una pista: el cambio de color del agua cuando se acumula el dióxido de carbono que se libera en la respiración celular.</small></div>
       <div class="pasos-lab" id="pasosLab"><span>1 · Pregunta</span><span>2 · Hipótesis</span><span>3 · Variables</span><span>4 · Experimento</span><span>5 · Conclusión</span></div>
       <div class="dato-jb montaje-lab">
         <b class="tit">El montaje</b>
