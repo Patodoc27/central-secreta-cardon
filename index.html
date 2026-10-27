@@ -5458,6 +5458,8 @@ const CEN={dentro:new Set(),on:false,tasa:0,co:0,ag:0,timer:null};
   /* entradas */
   tx(svg,44,190,'desde el tallo →',{fill:'#9be8b6','font-size':12});
   tx(svg,180,84,'aire del suelo ↓',{fill:'#ffb3c0','font-size':12});
+  tx(svg,55,140,'en el citoplasma:',{fill:'#9be8b6','font-size':11});
+  tx(svg,55,154,'la glucosa se parte en dos',{fill:'#9be8b6','font-size':11});
   /* salidas y destino de la energía */
   const tareas=[['crecer',110],['reparar',190],['transportar',270]];
   tareas.forEach(([t,y])=>{el('rect',{x:612,y:y-26,width:132,height:46,rx:10,fill:'#1a2340',stroke:'#2b375c','stroke-width':1.5,id:'tk'+t},svg);tx(svg,678,y+2,t,{'text-anchor':'middle',fill:'#edf2fa','font-size':14,'font-weight':700})});
@@ -5478,10 +5480,23 @@ mezclar(INGR).forEach(g=>{const b=h('button',{class:'ing','data-id':g.id},`<i st
 function entraR(id){
   const gIn=$('#cIn');
   for(let i=0;i<5;i++){
-    if(id==='glu'){const p=el('polygon',{points:hexa(0,0,8),fill:'#5ef28f',transform:'translate(40 200)'},gIn);const t0=performance.now(),d=700+i*130,fx=40,fy=196+i*3,tx2=190+i*10,ty=190+i*5;
-      const st=t=>{const k=clamp((t-t0)/d,0,1),q=1-Math.pow(1-k,3);p.setAttribute('transform',`translate(${lerp(fx,tx2,q)} ${lerp(fy,ty,q)})`);if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}
+    if(id==='glu'){
+      /* la glucosa entra al citoplasma y se parte en dos moléculas: solo los pedazos entran a la central */
+      const p=el('polygon',{points:hexa(0,0,8),fill:'#5ef28f',transform:'translate(40 200)'},gIn);
+      const t0=performance.now(),d1=480+i*110,fx=40,fy=196+i*3,sx=104+i*2,sy=196+i*2;
+      const s1=t=>{const k=clamp((t-t0)/d1,0,1),q=1-Math.pow(1-k,3);p.setAttribute('transform',`translate(${lerp(fx,sx,q)} ${lerp(fy,sy,q)})`);
+        if(k<1)requestAnimationFrame(s1);else{p.remove();partirGlu(i,sx,sy)}};
+      requestAnimationFrame(s1)}
     else{const c=el('circle',{r:6,fill:'#ff8fa3'},gIn);animar(c,[200+i*16,96],[250+i*16,150+i*4],700+i*130)}
   }
+}
+function partirGlu(i,x,y){
+  const gIn=$('#cIn');
+  [[-5,-5],[5,5]].forEach(([dx,dy],j)=>{
+    const q=el('polygon',{points:hexa(0,0,4.6),fill:'#5ef28f',transform:`translate(${x+dx} ${y+dy})`},gIn);
+    const t0=performance.now(),d=620,fx=x+dx,fy=y+dy,tx=196+i*9+j*7,ty=186+i*5+j*6;
+    const st=t=>{const k=clamp((t-t0)/d,0,1),o=1-Math.pow(1-k,3);q.setAttribute('transform',`translate(${lerp(fx,tx,o)} ${lerp(fy,ty,o)})`);if(k<1)requestAnimationFrame(st)};
+    requestAnimationFrame(st)});
 }
 function encenderR(){
   if(CEN.dentro.size<2)return;
