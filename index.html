@@ -348,19 +348,48 @@ table.cmpT th,table.cmpT td{border-bottom:1px solid var(--linea);padding:10px 12
 table.cmpT thead th{font-family:var(--f-disp);font-size:1.05rem}
 table.cmpT thead th:nth-child(2){color:var(--cloro)}table.cmpT thead th:nth-child(3){color:var(--mito)}
 table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22%}
+/* Pregunta-guía que conecta el montaje con la respiración celular */
+.lab-pregunta-foco{display:flex;flex-direction:column;gap:8px;padding:18px 20px;border-radius:15px;background:linear-gradient(120deg,#203350,#14243b);border:2px solid var(--agua)}
+.lab-pregunta-foco span{font:700 .76rem var(--f-dato);letter-spacing:.09em;color:var(--agua)}
+.lab-pregunta-foco strong{font:800 clamp(1.25rem,2.5vw,1.65rem)/1.25 var(--f-disp);color:#f5f8ff}
+.lab-pregunta-foco small{font-size:.91rem;color:#c6dbeb}
 /* tubos */
-.leyenda-ind{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--tenue);flex-wrap:wrap}
-.leyenda-ind i{display:block;width:220px;height:14px;border-radius:99px;background:linear-gradient(90deg,#2f6fe0,#3fae6a,#e6c832)}
-.tubos{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.tubo{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--noche);border:1px solid var(--linea)}
-.tubo b{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-dato);font-weight:800;border:2px solid var(--tc,var(--linea));color:var(--tc,var(--tinta))}
+.montaje-lab{gap:16px}
+.montaje-lab__intro{margin:0}
+.montaje-lab__meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.montaje-lab__meta .mini{padding:10px 12px;border-radius:12px;background:var(--panel);border:1px solid var(--linea);display:flex;flex-direction:column;gap:4px}
+.montaje-lab__meta .mini b{font-family:var(--f-dato);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--sol)}
+.montaje-lab__meta .mini span{font-size:.92rem}
+.tubos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:6px}
+.tubo{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:14px;border-radius:14px;background:linear-gradient(180deg,color-mix(in srgb,var(--tc) 10%,var(--panel2)),var(--noche));border:1.5px solid color-mix(in srgb,var(--tc) 42%,var(--linea));box-shadow:0 10px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.02)}
+.tubo__head{display:flex;align-items:center;gap:10px}
+.tubo__head b{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-dato);font-weight:800;border:2px solid var(--tc,var(--linea));color:var(--tc,var(--tinta));background:rgba(0,0,0,.14)}
+.tubo__tt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.tubo__tt strong{font-family:var(--f-disp);font-size:1rem;line-height:1.1}
+.tubo__tt small{font-size:.78rem;color:var(--tenue)}
+.tubo__chips{display:flex;flex-wrap:wrap;gap:6px}
+.tubo__chips span{font-size:.76rem;padding:4px 8px;border-radius:99px;border:1px solid color-mix(in srgb,var(--tc) 35%,var(--linea));background:rgba(255,255,255,.03);color:var(--tinta)}
+.tubo__desc{font-size:.92rem;color:#dfe8f6}
 .tubo.tA{--tc:#7fb6e0}.tubo.tB{--tc:var(--sol)}.tubo.tC{--tc:var(--cloro)}.tubo.tD{--tc:#b8bec9}
-.tubo span{font-size:.95rem}
+.panel-exp{display:flex;flex-direction:column;gap:12px;padding:14px;border-radius:16px;border:1.5px solid color-mix(in srgb,var(--agua) 35%,var(--linea));background:linear-gradient(180deg,color-mix(in srgb,var(--agua) 7%,var(--panel2)),var(--panel))}
+.panel-exp__top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.expmini{padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.16);border:1px solid var(--linea);display:flex;flex-direction:column;gap:4px}
+.expmini b{font-family:var(--f-dato);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--agua)}
+.expmini span{font-size:.92rem}
+.lab-visor{padding:14px;border-radius:14px;background:linear-gradient(180deg,#0f1830,#10172a);border:1px solid #31456d;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)}
+.leyenda-ind{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--tenue);flex-wrap:wrap;justify-content:space-between}
+.leyenda-ind__grad{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.leyenda-ind i{display:block;width:220px;height:14px;border-radius:99px;background:linear-gradient(90deg,#2f6fe0,#3fae6a,#e6c832);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.leyenda-ind .aviso{font-size:.8rem;padding:6px 10px;border-radius:999px;border:1px dashed var(--linea);background:rgba(255,255,255,.02)}
+#tablaLab{max-width:100%;border:1px solid var(--linea);border-radius:12px;overflow:hidden;background:var(--noche)}
+#tablaLab thead th{background:var(--panel2);font-family:var(--f-disp);font-size:.98rem}
+#tablaLab tbody tr:hover td{background:rgba(255,255,255,.02)}
 .barmini{display:inline-block;width:110px;height:10px;border-radius:99px;background:var(--noche);overflow:hidden;vertical-align:middle;margin-right:8px;border:1px solid var(--linea)}
 .barmini i{display:block;height:100%}
 .dsube{color:var(--mito);font-weight:800}
 .dbaja{color:var(--cloro);font-weight:800}
 .digual{color:var(--tenue);font-weight:700}
+@media (max-width:860px){.tubos,.panel-exp__top,.montaje-lab__meta{grid-template-columns:minmax(0,1fr)}}
 /* mitocondria rotulado */
 .zona{cursor:pointer}
 .zona:hover .hl{opacity:.35}
@@ -460,8 +489,8 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
       <div class="cmp" id="segCam"></div>
       <div class="fb" id="fbCam"></div>
       <div class="concepto bloque" id="defCam" hidden data-gated>
-        <span class="eyebrow">Ahora tiene nombre</span>
-        <p class="texto">El molle abre sus estomas de día, como la mayoría de las plantas: toma dióxido de carbono mientras hace la fotosíntesis, aunque también pierda agua. El cardón hace lo contrario: <b>de día mantiene los estomas cerrados y de noche los abre</b>. El dióxido de carbono que entra de noche lo guarda dentro de sus células en forma de ácido hasta que sale el sol: así fabrica glucosa de día sin abrir nada. Esta estrategia se llama <b>metabolismo ácido de las crasuláceas (CAM)</b> y la comparten muchas plantas de lugares secos.</p>
+        <span class="eyebrow">Lo que descubrieron</span>
+        <p class="texto">El molle abre sus estomas de día, como la mayoría de las plantas: toma dióxido de carbono mientras hace la fotosíntesis, aunque también pierda agua. El cardón hace lo contrario: <b>de día mantiene los estomas cerrados y de noche los abre</b>. El dióxido de carbono que entra de noche lo guarda dentro de sus células hasta que sale el sol: así fabrica glucosa de día sin abrir los estomas. Muchas plantas de lugares secos hacen lo mismo.</p>
         <div class="consigna"><b>RESPONDAN</b><span>¿Por qué le conviene al cardón mantener los estomas cerrados durante el día?</span></div>
         <div class="opc" id="qCam">
           <button data-v="a">Porque de día no hay dióxido de carbono en el aire</button>
@@ -535,7 +564,8 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
           <button class="tog" id="tOx" aria-pressed="true">Oxígeno <span class="sw"></span></button>
           <button class="tog" id="tLuzR" aria-pressed="true">Luz <span class="sw"></span></button>
         </div>
-        <div class="medidor">Energía<div class="barra"><i id="mEn" style="background:var(--mito)"></i></div><b class="dato" id="mEnT">0</b></div>
+        <p class="texto" style="font-size:.82rem;color:var(--tenue)">Es una simulación: los valores de los medidores no son mediciones reales.</p>
+         <div class="medidor">Energía<div class="barra"><i id="mEn" style="background:var(--mito)"></i></div><b class="dato" id="mEnT">0</b></div>
         <div class="medidor">Dióxido de carbono<div class="barra"><i id="mCo" style="background:var(--gas)"></i></div><b class="dato" id="mCoT">0</b></div>
         <div class="medidor">Agua<div class="barra"><i id="mAg" style="background:var(--agua)"></i></div><b class="dato" id="mAgT">0</b></div>
       </div>
@@ -554,7 +584,7 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
       <div class="fb" id="fbEcuR"></div>
       <div class="bloque concepto mito" id="defR" hidden data-gated>
         <span class="eyebrow">Ahora tiene nombre</span>
-        <h3>Respiración celular</h3><p class="texto" style="margin-top:10px"><b>Ecuación química balanceada:</b> C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + energía (parte capturada como ATP y parte liberada como calor). Los números 6 indican la cantidad de moléculas que participan.</p>
+        <h3>Respiración celular</h3>
         <div class="ecufija" style="border-color:var(--mito)">
           <div class="ecufija__col"><span class="ecufija__tag" style="color:var(--mito)">REACTIVOS</span><span class="ecufija__txt">glucosa + oxígeno</span></div>
           <div class="ecufija__fle"><i style="color:var(--mito)">sin necesidad de luz</i><b>⟶</b><small>en las mitocondrias</small></div>
@@ -562,8 +592,8 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
         </div>
         <p class="texto">La <mark style="color:var(--mito)">respiración celular</mark> es el proceso con el que las células obtienen energía: desarman la glucosa usando oxígeno y liberan la energía que estaba guardada en ella. Como productos se forman dióxido de carbono y agua. El dióxido de carbono puede salir de la célula; el agua también puede utilizarse dentro de ella.</p>
         <p class="texto">Empieza en el citoplasma, donde cada glucosa se parte en dos pedazos, y se completa en unas organelas llamadas <b>mitocondrias</b>: son las centrales que acaban de probar. Ahí se libera la mayor parte de la energía.</p>
-        <p class="texto">La energía no aparece de la nada: proviene de la glucosa producida por fotosíntesis. Parte de esa energía se transfiere a moléculas de <b>ATP</b>, que funcionan como portadores de energía utilizable por la célula: la célula las usa para crecer, reparar y transportar sustancias. Otra parte se pierde como <b>calor</b>.</p>
-        <p class="texto">Como la fotosíntesis, la respiración celular es parte del <b>metabolismo</b>, pero va en sentido contrario: transforma materia orgánica (glucosa) en materia inorgánica (dióxido de carbono y agua).</p>
+        <p class="texto">La energía no aparece de la nada: proviene de la glucosa producida por fotosíntesis. Una parte de esa energía la célula la usa para crecer, reparar sus partes y transportar sustancias. Otra parte se pierde como <b>calor</b>.</p>
+        <p class="texto">Como la fotosíntesis, la respiración celular transforma la materia, pero en sentido contrario: transforma materia orgánica (glucosa) en materia inorgánica (dióxido de carbono y agua).</p>
       </div>
     </div>
 
@@ -611,7 +641,7 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
       <div class="bloque concepto mito" id="defM" hidden data-gated>
         <span class="eyebrow">Ahora tiene nombre</span>
         <h3>La mitocondria</h3>
-        <p class="texto">La <mark style="color:var(--mito)">mitocondria</mark> es la organela donde se completa la respiración celular. Está envuelta por dos membranas. La <b>membrana externa</b> es lisa. La <b>membrana interna</b> se pliega hacia adentro y forma las <b>crestas</b>: plegada, tiene mucha más superficie en el mismo espacio, y en ella se usa el oxígeno, se forma el agua y se libera la mayor parte de la energía. Adentro está la <b>matriz</b>, un compartimento acuoso donde se terminan de desarmar los pedazos de glucosa y se forma el dióxido de carbono.</p>
+        <p class="texto">La <mark style="color:var(--mito)">mitocondria</mark> es la organela donde se completa la respiración celular. Está envuelta por dos membranas. La <b>membrana externa</b> es lisa. La <b>membrana interna</b> se pliega hacia adentro y forma las <b>crestas</b>. Esos pliegues aumentan la superficie disponible. Allí se usa el oxígeno, se forma agua y se libera la mayor parte de la energía. Adentro está la <b>matriz</b>, un compartimento acuoso donde se terminan de desarmar los pedazos de glucosa y se forma el dióxido de carbono.</p>
         <p class="texto">Las mitocondrias tienen su propio <b>ADN</b>, en forma de anillo, y sus propios ribosomas. Por eso pueden fabricar algunas de sus proteínas y dividirse en dos dentro de la célula.</p>
       </div>
     </div>
@@ -660,9 +690,9 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
       <div class="fb" id="fbQ"></div>
       <div class="concepto bloque mito" id="defQ" hidden data-gated>
         <span class="eyebrow">Ahora tiene nombre</span>
-        <p class="texto">Todos los seres vivos necesitan energía, y muchos la obtienen mediante <mark style="color:var(--mito)">respiración celular aeróbica</mark>: plantas, animales, hongos y muchos organismos de célula procariota. Tanto los autótrofos como los heterótrofos pueden realizar respiración celular aeróbica. La diferencia está en de dónde sacan la glucosa: el cardón la fabrica con la fotosíntesis; la vicuña la obtiene al comer pastos.</p>
+        <p class="texto">Todos los seres vivos necesitan energía, y muchos la obtienen con la <mark style="color:var(--mito)">respiración celular</mark>, usando oxígeno: plantas, animales, hongos y muchos organismos de célula procariota. La realizan tanto los seres vivos que fabrican su propia glucosa como los que la obtienen al alimentarse. La diferencia está en de dónde sacan la glucosa: el cardón la fabrica con la fotosíntesis; la vicuña la obtiene al comer pastos.</p>
         <p class="texto">En las células eucariotas, como las del cardón, la vicuña o un hongo, la respiración celular se completa en las <b>mitocondrias</b>. Las células procariotas no tienen mitocondrias: la realizan en su membrana y en su citoplasma.</p>
-        <p class="texto">Algunos microorganismos, como la levadura que hace crecer el pan, también pueden obtener energía sin oxígeno, con otro proceso llamado <b>fermentación</b>, que libera mucha menos energía.</p>
+        
       </div>
     </div>
 
@@ -702,59 +732,72 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
       <h2>Laboratorio del indicador</h2>
       <div class="chips"><span class="chip">Lugar <b>Mesada del Box</b></span><span class="chip">Tiempo <b>≈ 10 min</b></span></div>
     </div>
-    <div class="guia"><div class="guia__av">L</div><div class="guia__t"><small>Lucía · guía del Jardín</small>El dióxido de carbono no se ve. Para estudiar su efecto sobre el agua usamos azul de bromotimol, un indicador de pH: el dióxido de carbono disuelto puede acidificarla y hacer que el indicador pase de azul a verde o amarillo. El color no mide directamente la cantidad de dióxido de carbono. Para observar cambios en menos tiempo, usamos una simulación con elodea, una planta de acuario, y un caracol de agua. Los resultados son ilustrativos: en un experimento real dependen de las condiciones iniciales.</div></div>
+    <div class="guia"><div class="guia__av">L</div><div class="guia__t"><small>Lucía · guía del Jardín</small>El cardón respira en sus células durante el día y la noche. Pero ¿cómo podemos buscar una evidencia de que una planta sigue respirando cuando no recibe luz? Como el dióxido de carbono no se ve, usaremos un indicador: un líquido azul que se vuelve verde y después amarillo cuando en el agua se acumula dióxido de carbono. Usaremos elodea, una planta acuática, como modelo para investigar esta idea y después relacionarla con el cardón.</div></div>
 
     <div class="bloque">
+      <div class="lab-pregunta-foco"><span>DESAFÍO CIENTÍFICO · RESPIRACIÓN CELULAR</span><strong>¿Qué evidencias podemos obtener de que una planta realiza respiración celular incluso cuando no recibe luz?</strong><small>Buscamos una pista: el cambio de color del agua cuando se acumula el dióxido de carbono que se libera en la respiración celular.</small></div>
       <div class="pasos-lab" id="pasosLab"><span>1 · Pregunta</span><span>2 · Hipótesis</span><span>3 · Variables</span><span>4 · Experimento</span><span>5 · Conclusión</span></div>
-      <div class="dato-jb">
+      <div class="dato-jb montaje-lab">
         <b class="tit">El montaje</b>
-        <p class="texto">Cuatro tubos iguales, con agua y unas gotas de azul de bromotimol, cerrados con un tapón. En esta simulación, los tubos se mantienen durante 24 horas bajo las mismas condiciones, excepto la luz que recibe el tubo D. Se supone un indicador inicialmente azul y organismos en buen estado.</p>
+        <p class="texto montaje-lab__intro">Cuatro tubos cerrados, con la misma cantidad de agua e indicador, inicialmente azul. El tubo A no contiene organismos; B tiene un caracol; C y D contienen ramitas de elodea del mismo tamaño. A, B y C reciben luz artificial continua, mientras D está a oscuras. Entre C y D lo único distinto es la luz. Es una simulación de 24 horas: los colores muestran lo que podría pasar.</p>
+        <div class="montaje-lab__meta">
+          <div class="mini"><b>Pregunta</b><span>¿Hay evidencia de respiración sin luz?</span></div>
+          <div class="mini"><b>Lo que se observa</b><span>El color del agua</span></div>
+          <div class="mini"><b>Tiempo simulado</b><span>24 horas</span></div>
+        </div>
         <div class="tubos">
-          <div class="tubo tA"><b>A</b><span>Solo agua con indicador.</span></div>
-          <div class="tubo tB"><b>B</b><span>Un caracol de agua.</span></div>
-          <div class="tubo tC"><b>C</b><span>Una ramita de elodea.</span></div>
-          <div class="tubo tD"><b>D</b><span>Una ramita de elodea del mismo tamaño, con el tubo envuelto en papel aluminio para que no le llegue luz.</span></div>
+          <div class="tubo tA"><div class="tubo__head"><b>A</b><div class="tubo__tt"><strong>Tubo A</strong><small>Control</small></div></div><div class="tubo__chips"><span>Agua</span><span>Indicador</span><span>Sin organismo</span></div><div class="tubo__desc">Solo agua con indicador. Sirve para comparar y verificar que el agua no cambie sola.</div></div>
+          <div class="tubo tB"><div class="tubo__head"><b>B</b><div class="tubo__tt"><strong>Tubo B</strong><small>Comparación con un animal</small></div></div><div class="tubo__chips"><span>Caracol</span><span>Con luz</span><span>Con organismo</span></div><div class="tubo__desc">Un caracol de agua. Permite comparar el dióxido de carbono que libera un animal con el de una planta.</div></div>
+          <div class="tubo tC"><div class="tubo__head"><b>C</b><div class="tubo__tt"><strong>Tubo C</strong><small>Elodea con luz</small></div></div><div class="tubo__chips"><span>Elodea</span><span>Luz continua</span><span>Con luz</span></div><div class="tubo__desc">Una ramita de elodea. Recibe luz durante toda la simulación.</div></div>
+          <div class="tubo tD"><div class="tubo__head"><b>D</b><div class="tubo__tt"><strong>Tubo D</strong><small>Elodea a oscuras</small></div></div><div class="tubo__chips"><span>Elodea</span><span>Sin luz</span><span>A oscuras</span></div><div class="tubo__desc">Una ramita de elodea del mismo tamaño, con el tubo envuelto en papel aluminio para que no le llegue luz.</div></div>
         </div>
       </div>
       <div id="lab1" style="display:flex;flex-direction:column;gap:10px">
-        <div class="consigna"><b>ELIJAN</b><span>¿Qué pregunta pueden responder comparando los tubos C y D?</span></div>
+        <div class="consigna"><b>IDENTIFIQUEN</b><span>¿Cuál de estas preguntas conecta el experimento con la respiración celular?</span></div>
         <div class="opc" id="labQ">
-          <button data-v="no1">¿La elodea crece más rápido que el caracol?</button>
-          <button data-v="si">¿La luz cambia el dióxido de carbono que deja la elodea en el agua?</button>
-          <button data-v="no2">¿El azul de bromotimol es tóxico para la elodea?</button>
+          <button data-v="no1">¿La elodea aumenta de tamaño en 24 horas?</button>
+          <button data-v="si">¿Qué evidencia indica que la elodea sigue respirando a oscuras?</button>
+          <button data-v="no2">¿Cuál de las elodeas tiene más hojas?</button>
         </div>
         <div class="fb" id="fbLab1"></div>
       </div>
       <div id="lab2" hidden data-gated style="display:flex;flex-direction:column;gap:10px">
-        <div class="consigna"><b>ESCRIBAN</b><span>Su hipótesis: qué creen que va a pasar con el color del tubo D, a oscuras, comparado con el tubo C. Pueden empezar con “Creemos que el tubo D…”.</span></div>
+        <div class="consigna"><b>ESCRIBAN</b><span>Escriban una hipótesis: si la elodea respira a oscuras, ¿qué cambio esperan observar en el indicador del tubo D, comparado con C? Relacionen su predicción con el dióxido de carbono.</span></div>
         <div class="campo"><label for="hipo">Hipótesis</label><textarea id="hipo" style="min-height:64px"></textarea></div>
         <div class="fila"><button class="btn btn--sol" id="okHipo">Guardar hipótesis</button></div>
       </div>
       <div id="lab3" hidden data-gated style="display:flex;flex-direction:column;gap:10px">
-        <div class="consigna"><b>CLASIFIQUEN</b><span>Entre los tubos C y D, ¿cada dato es lo que cambian, lo que miden o lo que dejan igual?</span></div>
+        <div class="consigna"><b>CLASIFIQUEN</b><span>Al comparar C y D, clasifiquen la variable que cambia, la respuesta que se observa y las condiciones que se mantienen iguales.</span></div>
         <div class="cmp" id="varsLab"></div>
         <div class="fb" id="fbVars"></div>
       </div>
       <div id="lab4" hidden data-gated style="display:flex;flex-direction:column;gap:10px">
-        <div class="consigna"><b>OBSERVEN</b><span>Avancen 24 horas simuladas y miren el color de cada tubo.</span></div>
-        <div class="svgbox" id="labSvg"></div>
-        <div class="leyenda-ind">Poco dióxido de carbono <i></i> Mucho dióxido de carbono</div>
-        <div class="fila"><button class="btn btn--pri" id="correrLab">Simular 24 horas</button><span class="dato" id="labReloj">0 h</span></div>
-        <div class="tabla-wrap" id="tablaLabB" hidden data-gated><table class="datos" id="tablaLab" style="max-width:640px"><thead><tr><th>Tubo</th><th>Color simulado a las 24 h</th><th>Dióxido de carbono en el agua</th></tr></thead><tbody></tbody></table></div>
+        <div class="consigna"><b>ANALICEN</b><span>Realicen la simulación de 24 horas. Observen el cambio de color y comparen primero el tubo D con el control A; después, comparen D con C.</span></div>
+        <div class="panel-exp">
+          <div class="panel-exp__top">
+            <div class="expmini"><b>Control sin organismos</b><span>Tubo A</span></div>
+            <div class="expmini"><b>Comparación C–D</b><span>Con luz / sin luz</span></div>
+            <div class="expmini"><b>Se observa</b><span>El color del agua</span></div>
+          </div>
+          <div class="svgbox lab-visor" id="labSvg"></div>
+          <div class="leyenda-ind"><div class="leyenda-ind__grad">Azul (poco dióxido de carbono) <i></i> Amarillo (mucho dióxido de carbono)</div><span class="aviso">Es una simulación</span></div>
+          <div class="fila"><button class="btn btn--pri" id="correrLab">Simular 24 horas</button><span class="dato" id="labReloj">0 h</span></div>
+        </div>
+        <div class="tabla-wrap" id="tablaLabB" hidden data-gated><table class="datos" id="tablaLab"><thead><tr><th>Tubo</th><th>Color simulado a las 24 h</th><th>Qué nos dice del dióxido de carbono</th></tr></thead><tbody></tbody></table></div>
       </div>
       <div id="lab5" hidden data-gated style="display:flex;flex-direction:column;gap:10px">
-        <div class="consigna"><b>CONCLUYAN</b><span>¿Qué conclusión se apoya en los datos de los tubos C y D?</span></div>
+        <div class="consigna"><b>ANALICEN</b><span>El tubo D, con elodea a oscuras, cambió de azul a amarillo verdoso, mientras A permaneció azul. ¿Qué conclusión se sostiene con esta comparación?</span></div>
         <div class="opc" id="concl">
-          <button data-v="no1">La elodea respira solo de noche y hace fotosíntesis solo de día</button>
-          <button data-v="si">A oscuras, la elodea solo respira y deja dióxido de carbono en el agua</button>
-          <button data-v="no2">A oscuras, la elodea libera oxígeno y por eso cambia el color</button>
+          <button data-v="no1">La elodea necesita luz para realizar respiración celular</button>
+          <button data-v="si">A oscuras, la elodea respira y libera dióxido de carbono</button>
+          <button data-v="no2">El indicador demuestra directamente cuánto oxígeno produjo</button>
         </div>
         <div class="fb" id="fbConcl"></div>
-        <div class="consigna"><b>EXPLIQUEN</b><span>La elodea del tubo C también respira. ¿Por qué el agua siguió azul?</span></div>
+        <div class="consigna"><b>EXPLIQUEN</b><span>La elodea de C también realiza respiración celular. ¿Por qué su indicador no cambió como el de D?</span></div>
         <div class="opc" id="ctrl">
           <button data-v="no1">Porque con luz la elodea deja de respirar hasta la noche</button>
           <button data-v="no2">Porque la luz destiñe el indicador y no lo deja cambiar</button>
-          <button data-v="si">Porque con luz la fotosíntesis usa más dióxido de carbono del que libera</button>
+          <button data-v="si">Porque con luz la fotosíntesis usa ese dióxido de carbono</button>
         </div>
         <div class="fb" id="fbCtrl"></div>
       </div>
@@ -815,20 +858,20 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
         <div class="fb" id="fbBal"></div>
         <div class="dato-jb" id="datoCAM" hidden data-gated>
           <b class="tit">Dato del Jardín · el truco nocturno del cardón</b>
-          <p class="texto">El cardón, como muchos cactus de lugares secos, tiene una manera distinta de manejar sus gases: habitualmente abre los estomas de noche, cuando suele hacer más fresco y pierde menos agua, y almacena el carbono captado en forma de compuestos orgánicos. De día, habitualmente mantiene los estomas cerrados y libera internamente dióxido de carbono de esos compuestos para usarlo en la fotosíntesis. Su respiración celular, en cambio, no se detiene nunca: sigue de día y de noche en todas sus células vivas.</p>
+          <p class="texto">En la estación 1 vieron que el cardón no maneja sus gases como el molle: abre los estomas de noche y guarda el dióxido de carbono hasta el día. Por eso su balance de gases con el aire es distinto. Lo que no cambia es su respiración celular: sigue de día y de noche en todas sus células vivas.</p>
         </div>
       </div>
     </div>
 
     <div class="bloque" id="bTabla" hidden data-gated>
       <span class="eyebrow">Ahora tiene nombre</span>
-      <h3>Fotosíntesis y respiración celular</h3><p class="texto" style="margin-top:10px"><b>En el cardón:</b> las células vivas de la capa verde del tallo tienen cloroplastos y mitocondrias; sus células de la raíz también tienen mitocondrias, pero normalmente no tienen cloroplastos. La fotosíntesis requiere luz y la respiración celular aeróbica ocurre tanto de día como de noche.</p>
+      <h3>Fotosíntesis y respiración celular</h3><p class="texto" style="margin-top:10px"><b>En el cardón:</b> las células vivas de la capa verde del tallo tienen cloroplastos y mitocondrias; sus células de la raíz también tienen mitocondrias, pero normalmente no tienen cloroplastos. La fotosíntesis necesita luz y la respiración celular ocurre de día y de noche.</p>
       <div class="tabla-wrap">
         <table class="cmpT">
           <thead><tr><th></th><th>Fotosíntesis</th><th>Respiración celular</th></tr></thead>
           <tbody>
             <tr><th>Qué hace</th><td>Fabrica glucosa: transforma materia inorgánica en materia orgánica.</td><td>Desarma glucosa: transforma materia orgánica en materia inorgánica.</td></tr>
-            <tr><th>Energía</th><td>Capta la energía de la luz y la guarda en la glucosa.</td><td>Aprovecha la energía de la glucosa para producir ATP; otra parte se libera como calor.</td></tr>
+            <tr><th>Energía</th><td>Capta la energía de la luz y la guarda en la glucosa.</td><td>Libera la energía guardada en la glucosa para el trabajo de la célula; una parte se pierde como calor.</td></tr>
             <tr><th>Reactivos</th><td>Dióxido de carbono y agua.</td><td>Glucosa y oxígeno.</td></tr>
             <tr><th>Productos</th><td>Glucosa y oxígeno.</td><td>Dióxido de carbono y agua.</td></tr>
             <tr><th>Dónde</th><td>En los cloroplastos.</td><td>Empieza en el citoplasma y se completa en las mitocondrias.</td></tr>
@@ -876,11 +919,11 @@ table.cmpT tbody th{color:var(--tenue);font-weight:700;font-size:.85rem;width:22
         <li>Todas las células vivas necesitan energía para mantener sus funciones, aunque el organismo esté quieto.</li>
         <li>La respiración celular desarma la glucosa con oxígeno y libera su energía; se forman dióxido de carbono y agua.</li>
         <li>Empieza en el citoplasma y se completa en las mitocondrias.</li>
-        <li>La mitocondria tiene dos membranas; la interna forma crestas, donde se libera la mayor parte de la energía. Adentro está la matriz.</li>
-        <li>La respiración celular aeróbica la realizan muchos seres vivos, tanto autótrofos como heterótrofos. En los procariotas que usan oxígeno, intervienen el citoplasma y la membrana plasmática; existen también formas de obtener energía sin oxígeno.</li>
+        <li>La mitocondria tiene dos membranas; la interna forma pliegues llamados crestas, donde se libera la mayor parte de la energía. Adentro está la matriz.</li>
+        <li>La respiración celular la realizan plantas, animales, hongos y muchos organismos de célula procariota: tanto los que fabrican su glucosa como los que la obtienen al alimentarse.</li>
         <li>Ocurre de día y de noche, en todas las células vivas: en el cardón, también en la raíz y en el centro del tallo.</li>
         <li>Respirar (intercambiar gases) no es lo mismo que la respiración celular, aunque están conectados.</li>
-        <li>La fotosíntesis almacena energía luminosa en materia orgánica; la respiración celular transfiere parte de esa energía al ATP y disipa otra parte como calor. La materia circula; la energía sale como calor.</li>
+        <li>La fotosíntesis guarda la energía de la luz en la glucosa; la respiración celular la libera para el trabajo de la célula y una parte se pierde como calor.</li>
       </ul>
     </div>
 
@@ -5146,7 +5189,7 @@ function hexa(cx,cy,r){let s='';for(let i=0;i<6;i++){const a=Math.PI/3*i+Math.PI
 function animar(n,a,b,dur,cb,attr=['cx','cy']){const t0=performance.now();const st=t=>{const k=clamp((t-t0)/dur,0,1),q=1-Math.pow(1-k,3);n.setAttribute(attr[0],lerp(a[0],b[0],q));n.setAttribute(attr[1],lerp(a[1],b[1],q));if(k<1)requestAnimationFrame(st);else if(cb)cb()};requestAnimationFrame(st)}
 
 /* =================== estado =================== */
-const KEY='central-cardon-v1';
+const KEY='central-cardon-v2';
 const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}};
 let S=Object.assign({done:{},unl:0,cur:0,t0:null,txt:{},apuesta:null,apuesta2:null,quiz:{},nota:null,doc:false},load());
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
@@ -5206,9 +5249,11 @@ function marcarListo(id){const sec=secs[ST.findIndex(s=>s.id===id)];const p=$('.
 function mostrar(id){const n=$('#'+id);if(n)n.hidden=false}
 
 /* MODO LIBRE (?libre en la URL): revisión docente, todo abierto y sin requisitos */
-const LIBRE=true; /* copia para revisión docente: acceso libre */
+const LIBRE=false; /* versión para estudiantes: estaciones bloqueadas hasta completar cada una */
 const _libreAll=()=>{document.querySelectorAll('button[disabled]').forEach(b=>{if(!b.dataset.keepdisabled)b.disabled=false});document.querySelectorAll('[hidden]').forEach(e=>{if(!(e.classList&&e.classList.contains('est'))&&!e.closest('.escucha')&&!e.hasAttribute('data-gated'))e.hidden=false});document.querySelectorAll('.solapas button').forEach(b=>{if(!b.dataset.gatedpane){b.disabled=false;b.title=''}})};
 if(LIBRE){S.doc=true;const _ir=ir;ir=i=>{_ir(i);_libreAll()}}
+else S.doc=false;
+if(!LIBRE){const nr=h('button',{type:'button',class:'btn',id:'reiniciar',style:'align-self:flex-start;font-size:.85rem'},'Empezar de cero (borra lo guardado en esta computadora)');let arm=0;nr.addEventListener('click',()=>{if(!arm){arm=1;nr.textContent='¿Seguro? Toquen otra vez para borrar todo';setTimeout(()=>{arm=0;nr.textContent='Empezar de cero (borra lo guardado en esta computadora)'},5000);return}try{localStorage.removeItem(KEY)}catch(e){}location.reload()});const pe=$('section[data-id="entrada"] .portada .bloque');if(pe)pe.appendChild(nr)}
 else{
   const esCampo=e=>e.target&&e.target.closest&&e.target.closest('input,textarea,[contenteditable="true"]');
   document.addEventListener('copy',e=>{if(!e.target.closest||!e.target.closest('#fichaTxt'))e.preventDefault()});
@@ -5327,7 +5372,7 @@ segmentos('segCam',[
 ],[['dia','Abre de día'],['noche','Abre de noche']],'fbCam','Las dos plantas están resueltas.',()=>{mostrar('defCam')});
 pregunta('qCam','fbCam2','b',{
   a:'De día también hay dióxido de carbono en el aire: lo que no hay de sobra es agua para perder.',
-  b:'Correcto: abrir los estomas con el calor del día le haría perder muchísima agua. Por eso toma el dióxido de carbono de noche y lo guarda como ácido hasta el día.',
+  b:'Correcto: abrir los estomas con el calor del día le haría perder muchísima agua. Por eso toma el dióxido de carbono de noche y lo guarda hasta el día.',
   c:'Al revés: la glucosa la fabrica de día, cuando hay luz, usando el dióxido de carbono que guardó de noche.'},()=>{R.glucosa.cam=1;mostrar('bEnergia');marcarListo('glucosa')});
 cartas('cartasE',[
  {t:'Las raíces del cardón crecen entre las piedras de la ladera.',si:1,m:'Crecer es fabricar células nuevas, y eso cuesta energía.'},
@@ -5428,7 +5473,7 @@ opciones($('#predR2'),v=>{if(P3.t2)return;P3.p2=v;pn('c2p1','ok');pn('c2p2','on'
 ['tGlu','tOx','tLuzR'].forEach(id=>$('#'+id).addEventListener('click',e=>{const b=e.currentTarget;b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');actualizarR()}));
 function actualizarR(){
   const g=$('#tGlu').getAttribute('aria-pressed')==='true',o=$('#tOx').getAttribute('aria-pressed')==='true',l=$('#tLuzR').getAttribute('aria-pressed')==='true';
-  const en=g?(o?100:5):0, co=g?(o?100:4):0, ag=(g&&o)?100:0;
+  /* Los porcentajes son señales visuales, no rendimientos ni cantidades bioquímicas reales. */ const en=g?(o?100:5):0, co=g?(o?100:4):0, ag=(g&&o)?100:0;
   CEN.tasa=en/100;CEN.co=co;CEN.ag=ag;
   [['mEn',en],['mCo',co],['mAg',ag]].forEach(([id,v])=>{$('#'+id).style.width=v+'%';$('#'+id+'T').textContent=v});
   $('#cGlow').setAttribute('opacity',en/100);$('#tCalor').setAttribute('opacity',en>20?1:0);
@@ -5438,11 +5483,11 @@ function actualizarR(){
     $('#resR1').innerHTML='El medidor de energía sigue en <b>100</b>: la central no usa luz, así que funciona igual de día y de noche.'+(ok?' <b>Su predicción coincidió.</b>':' <b>No coincidió con su predicción</b>: la luz la necesita la fábrica de glucosa, no esta central.');fb('fbR1','','neu')}
   if(!P3.t2&&P3.p2&&g&&!o){P3.t2=true;pn('c2p2','ok');pn('c2p3','ok');$('#tOx').classList.remove('atencion');casoHecho(2);
     const ok=P3.p2==='casi';$('#resR2').hidden=false;$('#resR2').className='resC'+(ok?'':' mal');
-    $('#resR2').innerHTML='El medidor de energía cae a <b>5</b>: sin oxígeno, la central se detiene. La célula todavía consigue un poquito de energía por otro camino, la fermentación, pero no le alcanza por mucho tiempo. Por eso las raíces de un suelo inundado se ahogan.'+(ok?' <b>Su predicción coincidió.</b>':' <b>No coincidió con su predicción</b>: no baja un poco, cae casi por completo.');fb('fbR2','','neu')}
+    $('#resR2').innerHTML='El medidor cae a <b>5</b>: sin oxígeno, la central casi no puede desarmar la glucosa y libera muy poca energía. Si el suelo sigue inundado durante días, las células de la raíz se quedan sin energía y la raíz se daña.'+(ok?' <b>Su predicción coincidió.</b>':' <b>No coincidió con su predicción</b>: no baja un poco, cae casi por completo.');fb('fbR2','','neu')}
   if(P3.t1&&P3.t2&&!R.central.pred){R.central.pred=1;fb('fbCtl','Los dos casos están probados: la central no necesita luz, pero sin oxígeno casi no libera energía.','bien');mostrar('parteR3');marcarListo('central');return}
   let msg='';
   if(!g)msg='Sin glucosa no hay nada que desarmar: la central se detiene, aunque haya oxígeno.';
-  else if(!o)msg='Sin oxígeno la central se detiene: apenas queda un poquito de energía por otro camino.';
+  else if(!o)msg='Sin oxígeno la central casi se detiene: libera muy poca energía.';
   else if(!l)msg='De noche la central sigue igual: no depende de la luz.';
   else msg='Con glucosa y oxígeno, la central libera energía al máximo, haya o no luz.';
   if(R.central.pred)fb('fbCtl',msg,'neu');
@@ -5534,7 +5579,7 @@ pregunta('qCuantas','fbCuantas','cor',{
 $$('#qCuantas button').forEach(b=>b.addEventListener('click',()=>{mostrar('datoCuantas');mostrar('bCuantas2');$('#qCuantas').dataset.lock=1;$$('#qCuantas button').forEach(x=>{x.disabled=true;if(x.dataset.v==='cor')x.classList.add('bien')})}));
 pregunta('qDeduz','fbDeduz','b',{
   a:'Guardar glucosa no necesita mitocondrias: las mitocondrias la desarman para liberar energía.',
-  b:'Correcto: muchas mitocondrias, con muchas crestas, significan mucha energía liberada. Esa célula trabaja mucho.',
+  b:'Correcto: muchas mitocondrias, con muchas crestas, indican que la célula necesita mucha energía. Esa célula trabaja mucho.',
   c:'Fabricar glucosa con la luz es trabajo de los cloroplastos, no de las mitocondrias.'},()=>{R.mito.cuantas=1;marcarListo('mito')});
 </script>
 <script>
@@ -5596,11 +5641,11 @@ function etiqueta(n,color='#ffb547'){
 
 /* =================== mitocondria 3D =================== */
 const PM=[
- {t:'Membrana externa',d:'Es la envoltura lisa que rodea a toda la mitocondria y la separa del citoplasma. Permite el paso de algunas sustancias: el oxígeno que llega y moléculas derivadas de la glucosa que empezó a transformarse en el citoplasma.'},
+ {t:'Membrana externa',d:'Es la envoltura lisa que rodea a toda la mitocondria y la separa del citoplasma. Permite el paso de algunas sustancias: el oxígeno que llega y los pedazos de glucosa que vienen del citoplasma.'},
  {t:'Membrana interna',d:'Está justo debajo de la externa y es mucho más larga: se pliega hacia adentro una y otra vez. En ella se usa el oxígeno, se forma el agua y se libera la mayor parte de la energía.'},
  {t:'Crestas',d:'Son los pliegues que la membrana interna forma hacia adentro. Plegarse permite tener mucha membrana en poco espacio, como una sábana arrugada dentro de una caja: más pliegues, más superficie para liberar energía.'},
  {t:'Matriz',d:'Es el líquido espeso que llena el interior. Ahí se terminan de desarmar los pedazos de glucosa y se forma el dióxido de carbono, que después sale de la célula.'},
- {t:'ADN (ácido nucleico)',d:'La mitocondria tiene su propio ADN, en forma de anillo. Por eso puede fabricar algunas de sus proteínas y dividirse en dos dentro de la célula.'},
+ {t:'ADN',d:'La mitocondria tiene su propio ADN, en forma de anillo. Por eso puede fabricar algunas de sus proteínas y dividirse en dos dentro de la célula.'},
  {t:'Ribosomas',d:'Son los puntitos azules que se ven en la matriz: ribosomas propios de la mitocondria. Con ellos fabrica algunas de sus proteínas.'}
 ];
 let VMI=null;
@@ -5642,7 +5687,7 @@ leave.mito=()=>VMI&&VMI.stop();
 
 /* =================== 4 · quiénes y dónde =================== */
 cartas('cartasQ',[
- {t:'El cardón, que fabrica su propia glucosa.',si:1,m:'Que fabrique su glucosa no quita que la use: sus células también necesitan liberar esa energía.',b:'Bien: los autótrofos también respiran.'},
+ {t:'El cardón, que fabrica su propia glucosa.',si:1,m:'Que fabrique su glucosa no quita que la use: sus células también necesitan liberar esa energía.',b:'Bien: los que fabrican su propia glucosa también respiran.'},
  {t:'La vicuña que pasta en la ladera.',si:1,m:'La vicuña se mueve, crece y mantiene su cuerpo caliente: necesita energía de la glucosa.'},
  {t:'El molle de la sección Árboles y arbustos.',si:1,m:'El molle hace fotosíntesis en sus folíolos, pero todas sus células vivas también necesitan energía.'},
  {t:'Un hongo que crece sobre un cardón caído.',si:1,m:'El hongo no hace fotosíntesis: toma la materia orgánica del cardón muerto y la desarma para obtener energía.'},
@@ -5690,39 +5735,59 @@ cartas('cartasV',[
 function pasoLab(n){$$('#pasosLab span').forEach((s,i)=>{s.classList.toggle('on',i===n-1);if(i<n-1)s.classList.add('ok')});for(let i=1;i<=5;i++)$('#lab'+i).hidden=i>n}
 pasoLab(1);
 pregunta('labQ','fbLab1','si',{
-  si:'Esa pregunta se puede responder: entre C y D solo cambia la luz, y el indicador muestra el dióxido de carbono.',
-  no1:'Para comparar el crecimiento habría que medir tamaños durante semanas. Este montaje mide otra cosa: el dióxido de carbono del agua.',
-  no2:'Los tubos C y D tienen el mismo indicador. Lo único que cambia entre ellos es la luz.'},()=>{R.lab.p=1;pasoLab(2)});
+  si:'Esa pregunta conecta el cambio de color con la respiración celular: el dióxido de carbono que se libera hace cambiar el color del indicador.',
+  no1:'No medimos el crecimiento. Buscamos una pista del dióxido de carbono que libera la respiración celular.',
+  no2:'No se comparan hojas. Observamos el indicador: cambia de color si se acumula dióxido de carbono.'},()=>{R.lab.p=1;pasoLab(2)});
 $('#okHipo').addEventListener('click',()=>{const t=$('#hipo').value.trim();if(t.length<15){$('#hipo').focus();$('#okHipo').textContent='Escriban una oración completa';return}R.lab.h=1;$('#okHipo').textContent='Hipótesis guardada';$('#okHipo').disabled=true;pasoLab(3)});
 segmentos('varsLab',[
  {t:'Luz que recibe la ramita',r:'cambia',m:'Revisen: ¿qué es lo único distinto entre el tubo C y el tubo D?'},
- {t:'Color del indicador a las 24 horas',r:'mide',m:'El color es lo que van a observar para saber cuánto dióxido de carbono hay.'},
+ {t:'Color del indicador a las 24 horas',r:'mide',m:'El color del indicador es lo que observan para saber si se acumuló dióxido de carbono.'},
  {t:'Tamaño de la ramita de elodea',r:'igual',m:'Si una ramita fuera más grande, no sabrían si la diferencia la causó la luz o el tamaño.'},
  {t:'Cantidad de agua y de indicador',r:'igual',m:'Si cambiara de un tubo a otro, no sabrían qué causó la diferencia.'},
  {t:'Temperatura',r:'igual',m:'La temperatura cambia la velocidad de los procesos: tiene que ser la misma en los dos tubos.'}
 ],[['cambia','Cambia'],['mide','Se mide'],['igual','Queda igual']],'fbVars','Bien: cambian una sola cosa, la luz. Si cambiaran varias a la vez, no sabrían cuál produjo el resultado.',()=>{R.lab.v=1;pasoLab(4)});
-const TUBOS=[{n:'A · solo agua',f:0,c:'azul',s:'Poco, igual que al principio'},{n:'B · caracol',f:1,c:'amarillo',s:'Mucho más que al principio'},{n:'C · elodea con luz',f:0,c:'azul',s:'Poco, igual o menos que al principio'},{n:'D · elodea a oscuras',f:.78,c:'amarillo verdoso',s:'Más que al principio'}];
+const TUBOS=[{n:'A · solo agua',f:0,c:'azul',s:'No se acumuló: no hay nada vivo'},{n:'B · caracol',f:1,c:'amarillo',s:'Se acumuló: el caracol respira'},{n:'C · elodea con luz',f:0,c:'azul',s:'No se acumuló'},{n:'D · elodea a oscuras',f:.78,c:'amarillo verdoso',s:'Se acumuló: la elodea respira'}];
 function colInd(k){const a=[47,111,224],b=[63,174,106],c=[230,200,50];const m=k<.5?[a,b,k*2]:[b,c,(k-.5)*2];return `rgb(${m[0].map((v,i)=>Math.round(lerp(v,m[1][i],m[2]))).join(',')})`}
 const LT={};
 (function(){
-  const svg=el('svg',{viewBox:'0 0 760 300',role:'img','aria-label':'Cuatro tubos con indicador'});
-  el('rect',{x:0,y:0,width:760,height:300,rx:14,fill:'#10172a'},svg);el('rect',{x:0,y:262,width:760,height:38,fill:'#1d2640'},svg);
-  LT.liq=[];LT.wrap=null;
+  const svg=el('svg',{viewBox:'0 0 760 360',role:'img','aria-label':'Cuatro tubos con indicador'});
+  const defs=el('defs',{},svg);
+  const g1=el('linearGradient',{id:'bgLab',x1:'0',x2:'0',y1:'0',y2:'1'},defs);el('stop',{offset:'0%','stop-color':'#13213f'},g1);el('stop',{offset:'100%','stop-color':'#0f1629'},g1);
+  const g2=el('linearGradient',{id:'glass',x1:'0',x2:'0',y1:'0',y2:'1'},defs);el('stop',{offset:'0%','stop-color':'rgba(205,232,255,.3)'},g2);el('stop',{offset:'100%','stop-color':'rgba(90,130,170,.12)'},g2);
+  const glow=el('radialGradient',{id:'lampGlow',cx:'50%',cy:'50%',r:'50%'},defs);el('stop',{offset:'0%','stop-color':'rgba(255,181,71,.55)'},glow);el('stop',{offset:'100%','stop-color':'rgba(255,181,71,0)'},glow);
+  el('rect',{x:0,y:0,width:760,height:360,rx:18,fill:'url(#bgLab)'},svg);
+  el('rect',{x:26,y:54,width:708,height:14,rx:7,fill:'#2a3d62'},svg);
+  el('rect',{x:16,y:280,width:728,height:56,rx:14,fill:'#1c2847'},svg);
+  tx(svg,42,36,'Mesada experimental',{'text-anchor':'start',fill:'#edf2fa','font-size':18,'font-weight':800});
+  tx(svg,42,50,'Los tubos se observan después de 24 horas simuladas.',{'text-anchor':'start',fill:'#a7b3cc','font-size':12});
+  LT.liq=[];LT.wrap=null;LT.clock=null;
+  const labels=[
+    ['Control','Sin organismo'],
+    ['Caracol','Respiración'],
+    ['Elodea con luz','Luz continua'],
+    ['Elodea a oscuras','Sin fotosíntesis']
+  ];
   TUBOS.forEach((t,i)=>{const cx=110+i*180;
-    el('rect',{x:cx-26,y:40,width:52,height:20,rx:5,fill:'#5a5f70'},svg);
-    el('path',{d:`M${cx-30} 58 L${cx-30} 222 Q${cx-30} 252 ${cx} 252 Q${cx+30} 252 ${cx+30} 222 L${cx+30} 58 Z`,fill:'#16304a',opacity:.6,stroke:'#7fb6e0','stroke-width':2},svg);
-    const l=el('path',{d:`M${cx-26} 80 L${cx-26} 222 Q${cx-26} 248 ${cx} 248 Q${cx+26} 248 ${cx+26} 222 L${cx+26} 80 Z`,fill:colInd(0),opacity:.85},svg);LT.liq.push(l);
-    if(i===1){const g=el('g',{},svg);el('ellipse',{cx:cx,cy:226,rx:16,ry:7,fill:'#6b4b2a'},g);el('circle',{cx:cx+4,cy:216,r:11,fill:'#a9784a',stroke:'#5a3b1e','stroke-width':2},g);el('path',{d:`M${cx+4} 216 m-6 0 a6 6 0 1 0 6 -6`,stroke:'#5a3b1e','stroke-width':2,fill:'none'},g)}
-    if(i>=2){const g=el('g',{},svg);el('path',{d:`M${cx} 244 C${cx-4} 200 ${cx+4} 160 ${cx-2} 110`,stroke:'#2f8a3a','stroke-width':3,fill:'none'},g);for(let k=0;k<9;k++){const y=236-k*14;el('ellipse',{cx:cx-8,cy:y,rx:8,ry:3,fill:'#46c46a',transform:`rotate(-30 ${cx-8} ${y})`},g);el('ellipse',{cx:cx+8,cy:y-6,rx:8,ry:3,fill:'#46c46a',transform:`rotate(30 ${cx+8} ${y-6})`},g)}}
-    if(i===3){const w=el('g',{},svg);el('rect',{x:cx-36,y:52,width:72,height:206,rx:14,fill:'#b8bec9',opacity:.95},w);for(let k=0;k<10;k++)el('line',{x1:cx-34,x2:cx+34,y1:62+k*19,y2:68+k*19,stroke:'#e9edf3','stroke-width':2,opacity:.6},w);tx(w,cx,160,'aluminio',{'text-anchor':'middle',fill:'#2a3150','font-size':12,'font-weight':700});LT.wrap=w}
-    tx(svg,cx,288,'Tubo '+'ABCD'[i],{'text-anchor':'middle',fill:'#edf2fa','font-size':13,'font-weight':700});
+    const col=['#7fb6e0','#ffb547','#5ef28f','#b8bec9'][i];
+    el('rect',{x:cx-70,y:78,width:140,height:194,rx:16,fill:'rgba(255,255,255,.02)',stroke:'rgba(255,255,255,.07)'},svg);
+    el('rect',{x:cx-26,y:70,width:52,height:16,rx:5,fill:'#707891'},svg);
+    el('path',{d:`M${cx-30} 84 L${cx-30} 222 Q${cx-30} 254 ${cx} 254 Q${cx+30} 254 ${cx+30} 222 L${cx+30} 84 Z`,fill:'url(#glass)',stroke:'#9ac5e8','stroke-width':2},svg);
+    el('path',{d:`M${cx-20} 92 L${cx-14} 92 L${cx-14} 236 Q${cx-14} 244 ${cx} 244`,stroke:'rgba(255,255,255,.28)','stroke-width':3,fill:'none',opacity:.7},svg);
+    const l=el('path',{d:`M${cx-26} 100 L${cx-26} 222 Q${cx-26} 248 ${cx} 248 Q${cx+26} 248 ${cx+26} 222 L${cx+26} 100 Z`,fill:colInd(0),opacity:.92},svg);LT.liq.push(l);
+    if(i===1){const g=el('g',{},svg);el('ellipse',{cx:cx,cy:226,rx:17,ry:7,fill:'#6b4b2a'},g);el('circle',{cx:cx+4,cy:216,r:12,fill:'#a9784a',stroke:'#5a3b1e','stroke-width':2},g);el('path',{d:`M${cx+4} 216 m-6 0 a6 6 0 1 0 6 -6`,stroke:'#5a3b1e','stroke-width':2,fill:'none'},g)}
+    if(i>=2){const g=el('g',{},svg);el('path',{d:`M${cx} 244 C${cx-4} 198 ${cx+4} 160 ${cx-2} 114`,stroke:'#2f8a3a','stroke-width':3,fill:'none'},g);for(let k=0;k<8;k++){const y=236-k*15;el('ellipse',{cx:cx-8,cy:y,rx:8,ry:3,fill:'#46c46a',transform:`rotate(-30 ${cx-8} ${y})`},g);el('ellipse',{cx:cx+8,cy:y-6,rx:8,ry:3,fill:'#46c46a',transform:`rotate(30 ${cx+8} ${y-6})`},g)}}
+    if(i===2){el('circle',{cx:cx,cy:108,r:42,fill:'url(#lampGlow)'},svg);el('circle',{cx:cx,cy:86,r:12,fill:'#ffb547'},svg);for(let r=0;r<8;r++){const ang=(Math.PI*2/8)*r;el('line',{x1:cx+Math.cos(ang)*16,y1:86+Math.sin(ang)*16,x2:cx+Math.cos(ang)*24,y2:86+Math.sin(ang)*24,stroke:'#ffb547','stroke-width':2},svg)}}
+    if(i===3){const w=el('g',{},svg);el('rect',{x:cx-38,y:78,width:76,height:182,rx:16,fill:'#cfd5df',opacity:.95},w);for(let k=0;k<10;k++)el('line',{x1:cx-34,x2:cx+34,y1:88+k*16,y2:94+k*16,stroke:'#eef2f7','stroke-width':2,opacity:.65},w);tx(w,cx,172,'sin luz',{'text-anchor':'middle',fill:'#2a3150','font-size':12,'font-weight':800});LT.wrap=w}
+    tx(svg,cx,296,'Tubo '+'ABCD'[i],{'text-anchor':'middle',fill:col,'font-size':15,'font-weight':800});
+    tx(svg,cx,313,labels[i][0],{'text-anchor':'middle',fill:'#edf2fa','font-size':13,'font-weight':700});
+    tx(svg,cx,328,labels[i][1],{'text-anchor':'middle',fill:'#a7b3cc','font-size':11});
   });
-  const sol=el('g',{},svg);el('circle',{cx:730,cy:28,r:12,fill:'#ffb547'},sol);
+  const reloj=el('g',{},svg);el('circle',{cx:700,cy:38,r:18,fill:'#192644',stroke:'#40547d','stroke-width':2},reloj);el('line',{x1:700,y1:38,x2:700,y2:28,stroke:'#edf2fa','stroke-width':2},reloj);el('line',{x1:700,y1:38,x2:708,y2:42,stroke:'#edf2fa','stroke-width':2},reloj);LT.clock=tx(svg,700,67,'0 h',{'text-anchor':'middle',fill:'#edf2fa','font-size':12,'font-weight':800});
   $('#labSvg').appendChild(svg);
 })();
 $('#correrLab').addEventListener('click',()=>{
   const btn=$('#correrLab');btn.disabled=true;const dur=reduce?1:8000,t0=performance.now();
-  const step=t=>{const k=clamp((t-t0)/dur,0,1);$('#labReloj').textContent=Math.floor(k*24)+' h';
+  const step=t=>{const k=clamp((t-t0)/dur,0,1);const horas=Math.floor(k*24)+' h';$('#labReloj').textContent=horas;if(LT.clock)LT.clock.textContent=horas;
     LT.liq.forEach((l,i)=>l.setAttribute('fill',colInd(TUBOS[i].f*k)));
     if(k<1)requestAnimationFrame(step);else finLab()};requestAnimationFrame(step);
 });
@@ -5734,13 +5799,13 @@ function finLab(){
 const LC={c:false,k:false};
 function finLC(){if(LC.c&&LC.k){R.lab.c=1;$$('#pasosLab span')[4].classList.add('ok');marcarListo('lab')}}
 pregunta('concl','fbConcl','si',{
-  si:'Correcto. Sin luz no hay fotosíntesis: solo queda la respiración celular, que libera dióxido de carbono, y el indicador se pone amarillo verdoso.',
-  no1:'Los datos no dicen eso: el tubo C estuvo 24 horas, de día y de noche. Comparen C y D: ¿qué cambia cuando falta la luz?',
-  no2:'Revisen la leyenda: el amarillo indica mucho dióxido de carbono, no oxígeno.'},()=>{LC.c=true;finLC()});
+  si:'Correcto. A oscuras la elodea no hace fotosíntesis, pero sigue respirando. El dióxido de carbono que libera se acumula en el agua y cambia el color del indicador.',
+  no1:'La respiración celular no necesita luz. El color de D cambia aun cuando la elodea no recibe iluminación.',
+  no2:'El indicador cambia con el dióxido de carbono: no dice nada del oxígeno.'},()=>{LC.c=true;finLC()});
 pregunta('ctrl','fbCtrl','si',{
-  si:'Exacto. La elodea respira todo el tiempo, pero con luz su fotosíntesis usa más dióxido de carbono del que la respiración libera. Por eso el agua no acumula dióxido de carbono.',
+  si:'Exacto. La elodea respira con luz y sin luz. Pero con luz, la fotosíntesis usa el dióxido de carbono que libera la respiración, y no llega a acumularse en el agua.',
   no1:'La respiración celular no se detiene nunca mientras la célula está viva. Piensen qué otro proceso ocurre con luz y usa dióxido de carbono.',
-  no2:'Miren el tubo A: también recibió luz y siguió azul. El tubo B también recibió luz y se puso amarillo. La luz no cambia el indicador.'},()=>{LC.k=true;finLC()});
+  no2:'La luz no destiñe el indicador en este montaje. La diferencia está entre la fotosíntesis, que usa dióxido de carbono, y la respiración, que lo libera.'},()=>{LC.k=true;finLC()});
 </script>
 <script>
 "use strict";
@@ -5774,7 +5839,7 @@ $('#horaB').addEventListener('input',e=>{
   else if(foto===0)v='No hay luz: solo queda la respiración celular. El molle toma oxígeno del aire y deja salir dióxido de carbono.';
   else v='Hay poca luz: la respiración supera a la fotosíntesis. El molle deja salir algo de dióxido de carbono.';
   $('#vBal').textContent=v;
-  if(hh>=11&&hh<=13)BAL.dia=1;if(hh<=4||hh>=21)BAL.noche=1;
+  if(hh>=11&&hh<=13)BAL.dia=1;if(hh<=5||hh>=19.5)BAL.noche=1;
   $('#ckDia').classList.toggle('ok',!!BAL.dia);$('#ckNoche').classList.toggle('ok',!!BAL.noche);$('#ckEq').classList.toggle('ok',!!BAL.eq);
   if(BAL.dia&&BAL.noche&&BAL.eq)mostrar('bBal2');
 });
@@ -5789,20 +5854,20 @@ opciones($('#apuesta2'),v=>{S.apuesta2=v;save();
   if(v==='glucosa')fb('fbAp2',S.apuesta==='glucosa'?'Mantuvieron su apuesta y ahora pueden explicarla: la glucosa llega desde la capa verde del tallo y las mitocondrias de la raíz la desarman con oxígeno para liberar su energía.':'Cambiaron de idea con evidencia: la raíz no tiene luz ni cloroplastos, pero recibe glucosa del tallo y sus mitocondrias la desarman con oxígeno para liberar energía.','bien');
   else fb('fbAp2','Revisen la estación de la central: ¿qué tuvieron que hacer entrar para encenderla, y qué pasó al apagar la luz?','mal')});
 const Q=[
- {e:'En el Jardín pusieron semillas de cardón a germinar en una caja oscura, con tierra húmeda. Durante una semana, las plantitas crecieron sin recibir nada de luz. ¿De dónde salió la energía para ese crecimiento?',o:['De la luz que guardaron cuando todavía estaban en el fruto','De sus reservas, que las células desarmaron usando oxígeno','Del agua que absorbieron, que se transformó en energía','De los minerales de la tierra húmeda que absorbieron'],k:1},
- {e:'Martina visita los Cactarios y dice: “El cardón no respira, porque no tiene pulmones ni nariz”. ¿Cuál es el error en su razonamiento?',o:['El cardón toma aire por las espinas, que funcionan como pulmones','El cardón respira solo de noche, cuando no hace fotosíntesis','Lo único que respira en el cardón es la raíz, bajo tierra','Cada célula viva desarma glucosa con oxígeno, tenga o no pulmones'],k:3},
- {e:'Pusieron una rama de molle en un frasco transparente cerrado, al aire libre. Cada seis horas midieron si el dióxido de carbono del aire del frasco subía o bajaba. ¿Qué explica el resultado de las 24 h?',g:'frasco',o:['Sin luz, la rama solo respira y libera dióxido de carbono','De noche, la fotosíntesis de la rama funciona al revés','La rama guardó dióxido de carbono de día y lo suelta','De noche la rama empieza a respirar, porque ya no fabrica'],k:0},
+ {e:'En el Jardín pusieron semillas de cardón a germinar en una caja oscura, con tierra húmeda. Durante una semana, las plantitas crecieron sin recibir nada de luz. ¿De dónde salió la energía para ese crecimiento?',o:['De la luz que guardaron cuando todavía estaban en el fruto','De sus reservas, que sus células desarmaron con oxígeno','Del agua que absorbieron, que se transformó en energía','De los minerales de la tierra húmeda que absorbieron'],k:1},
+ {e:'Martina visita los Cactarios y dice: “El cardón no respira, porque no tiene pulmones ni nariz”. ¿Cuál es el error en su razonamiento?',o:['El cardón toma aire por las espinas, que funcionan como pulmones','El cardón respira solo de noche, cuando no hace fotosíntesis','Lo único que respira en el cardón es la raíz, bajo tierra','Sus células vivas desarman glucosa con oxígeno, sin pulmones'],k:3},
+ {e:'Pusieron una rama de molle en un frasco transparente cerrado, al aire libre. Cada seis horas midieron si el dióxido de carbono del aire del frasco subía o bajaba. ¿Qué explica el resultado de las 24 h?',g:'frasco',o:['Sin luz, solo respira y libera dióxido de carbono','De noche, la fotosíntesis de la rama funciona al revés','La rama guardó dióxido de carbono de día y lo suelta','De noche la rama empieza a respirar, porque ya no fabrica'],k:0},
  {e:'Una investigadora observa con microscopio electrónico dos células de una vicuña: una del músculo de la pata y otra de la piel. La del músculo tiene muchas más mitocondrias. ¿Qué explica esa diferencia?',o:['El músculo fabrica en ellas la glucosa que usa para moverse','La piel toma el oxígeno directo del aire y no las necesita','El músculo trabaja mucho y necesita liberar más energía','En el músculo guardan el oxígeno que traen los pulmones'],k:2},
  {e:'Un molle en maceta quedó con la tierra inundada durante varios días. El agua ocupó todos los huecos del suelo y las raíces empezaron a morir. ¿Qué les faltó a las células de la raíz?',o:['Oxígeno, para desarmar la glucosa y liberar su energía','Luz, para hacer la fotosíntesis que les da energía','Dióxido de carbono, para fabricar glucosa en la raíz','Minerales, porque el agua los arrastró lejos de la raíz'],k:0},
  {e:'Una estudiante observa al microscopio células de la raíz del cardón y no encuentra cloroplastos. Quiere encontrar la organela donde se libera la mayor parte de la energía. ¿Qué tiene que buscar?',o:['Cloroplastos pequeños, que en la raíz no se ven verdes','El núcleo, donde la célula fabrica toda su energía','La vacuola, donde la raíz guarda la energía del agua','Mitocondrias, donde se termina de desarmar la glucosa'],k:3},
- {e:'En un termo pusieron semillas de poroto húmedas que estaban germinando. En otro termo igual, semillas hervidas y desinfectadas, que estaban muertas. A los dos días midieron la temperatura. ¿Qué explica la diferencia?',g:'termo',o:['Las semillas vivas hacen fotosíntesis aunque el termo esté oscuro','Las semillas vivas respiran y pierden parte de su energía como calor','Las semillas vivas absorben el calor del aire del laboratorio','Al germinar, el agua de las semillas se transforma en calor'],k:1},
+ {e:'En un termo pusieron semillas de poroto húmedas que estaban germinando. En otro termo igual, semillas hervidas y desinfectadas, que estaban muertas. A los dos días midieron la temperatura. ¿Qué explica la diferencia?',g:'termo',o:['Las semillas vivas hacen fotosíntesis aunque el termo esté oscuro','Las semillas vivas respiran y liberan algo de energía como calor','Las semillas vivas absorben el calor del aire del laboratorio','Al germinar, el agua de las semillas se transforma en calor'],k:1},
  {e:'Un caracol de agua y una ramita de elodea están juntos en un frasco cerrado con agua. El frasco queda dos días dentro de un armario oscuro. ¿Qué le pasa al oxígeno del agua?',o:['Aumenta, porque la elodea lo libera también de noche','Se mantiene, porque la elodea deja de usarlo sin luz','Disminuye, porque los dos lo usan y nadie lo libera','Disminuye, porque el caracol lo usa y la elodea no'],k:2},
- {e:'Una vicuña come pastos de la Puna y después corre por una ladera. Los pastos crecieron haciendo fotosíntesis. ¿De dónde viene, en último término, la energía que usan sus músculos al correr?',o:['Del oxígeno del aire, que se transforma en energía en los músculos','De la luz del sol, guardada en la materia del pasto','Del agua que tomó, que sus mitocondrias desarman para liberarla','De los minerales del pasto, que sus células convierten en movimiento'],k:1},
+ {e:'Una vicuña come pastos de la Puna y después corre por una ladera. Los pastos crecieron haciendo fotosíntesis. ¿De dónde viene, en último término, la energía que usan sus músculos al correr?',o:['Del oxígeno del aire, que se transforma en energía en los músculos','De la energía de la luz solar, guardada en el pasto','Del agua que tomó, que sus mitocondrias desarman para liberarla','De los minerales del pasto, que sus células convierten en movimiento'],k:1},
  {e:'En el suelo de la Quebrada viven organismos de célula procariota que desarman restos de cardones muertos usando oxígeno. Estas células no tienen mitocondrias. ¿Qué se puede concluir?',o:['Hacen respiración celular en su membrana y su citoplasma','No obtienen energía, porque les faltan las mitocondrias','Obtienen energía con fotosíntesis, aunque estén bajo tierra','Usan las mitocondrias de las células del cardón muerto'],k:0}
 ];
 function grafQ(tipo){
-  if(tipo==='frasco'){const d=[['6 h (amanecer)','igual','no cambió',55,'var(--tenue)'],['12 h (mediodía)','mucho menos','bajó mucho',18,'var(--cloro)'],['18 h (atardecer)','menos','bajó un poco',38,'var(--cloro)'],['24 h (medianoche)','más','subió',80,'var(--mito)']];
-    return `<div class="tabla-wrap"><table class="datos" style="max-width:640px"><thead><tr><th>Hora</th><th>Dióxido de carbono del aire, en la última hora</th><th>Medición</th></tr></thead><tbody>${d.map(r=>`<tr><td class="dato">${r[0]}</td><td><span class="${r[4]==='var(--tenue)'?'digual':r[4]==='var(--cloro)'?'dbaja':'dsube'}">${r[1]}</span> <small style="color:var(--tenue)">(${r[2]})</small></td><td><span class="barmini"><i style="width:${r[3]}%;background:${r[4]}"></i></span></td></tr>`).join('')}</tbody></table></div>`}
+  if(tipo==='frasco'){const d=[['6 h (amanecer)','inicio','primera medición',55,'var(--tenue)'],['12 h (mediodía)','mucho menos','bajó mucho',18,'var(--cloro)'],['18 h (atardecer)','menos','bajó un poco',38,'var(--cloro)'],['24 h (medianoche)','más','subió',80,'var(--mito)']];
+    return `<div class="tabla-wrap"><table class="datos" style="max-width:640px"><thead><tr><th>Hora</th><th>Cambio del dióxido de carbono del aire respecto de la medición anterior</th><th>Medición</th></tr></thead><tbody>${d.map(r=>`<tr><td class="dato">${r[0]}</td><td><span class="${r[4]==='var(--tenue)'?'digual':r[4]==='var(--cloro)'?'dbaja':'dsube'}">${r[1]}</span> <small style="color:var(--tenue)">(${r[2]})</small></td><td><span class="barmini"><i style="width:${r[3]}%;background:${r[4]}"></i></span></td></tr>`).join('')}</tbody></table></div>`}
   const d=[['Termo 1 · semillas germinando','27 °C',90,'var(--mito)'],['Termo 2 · semillas muertas','20 °C',62,'var(--agua)'],['Aire del laboratorio','20 °C',62,'var(--tenue)']];
   return `<div class="tabla-wrap"><table class="datos" style="max-width:560px"><thead><tr><th>Lugar</th><th style="text-align:right">Temperatura a los 2 días</th><th></th></tr></thead><tbody>${d.map(r=>`<tr><td>${r[0]}</td><td class="num"><b>${r[1]}</b></td><td><span class="barmini"><i style="width:${r[2]}%;background:${r[3]}"></i></span></td></tr>`).join('')}</tbody></table></div>`;
 }
@@ -5830,7 +5895,7 @@ function enviarRegistro(){
     est1:(S.txt.n1||'').trim(),est2:(S.txt.n2||'').trim(),curso:S.seccion?('1° '+S.seccion):'',
     apuestaInicial:AP[S.apuesta]||'',apuestaFinal:AP[S.apuesta2]||'',veredicto:(S.txt.veredicto||'').trim(),nota:S.nota+'/10'};
   fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
-    .then(()=>{if(aviso)aviso.textContent='El registro del trabajo llegó a su docente.'})
+    .then(r=>{if(!r.ok)throw new Error('Respuesta HTTP '+r.status);if(aviso)aviso.textContent='El envío fue aceptado por el servidor; verificá su recepción en la planilla.'})
     .catch(()=>{S.reg=0;save();if(aviso)aviso.textContent='No se pudo enviar el registro: avisen a su docente.'});
 }
 function armarFicha(){
@@ -5842,7 +5907,7 @@ function armarFicha(){
   L.push('Apuesta final: '+(AP[S.apuesta2]||'—'));
   L.push('Explicación final: '+(t.veredicto||'—'));
   L.push('Hipótesis del laboratorio: '+(t.hipo||'—'));
-  L.push('Ecuación global: C6H12O6 + 6 O2 → 6 CO2 + 6 H2O + energía (ATP y calor). Empieza en citoplasma y continúa en mitocondrias');
+  L.push('Respiración celular: glucosa + oxígeno → dióxido de carbono + agua + energía. Empieza en el citoplasma y se completa en las mitocondrias.');
   L.push('');L.push('Cuestionario: '+S.nota+' de 10');
   L.push('Respuestas: '+Q.map((q,i)=>`${i+1}${'abcd'[S.quiz[i]]}${S.quiz[i]===q.k?'✓':'✗'}`).join('  '));
   $('#fichaTxt').textContent=L.join('\n');
@@ -5910,6 +5975,5 @@ leave.central=()=>{if(CEN.timer){clearInterval(CEN.timer);CEN.timer=null}};
 if(S.unl>=ST.length)S.unl=ST.length-1;
 ir(Math.min(S.cur||0,S.doc?ST.length-1:S.unl));
 </script>
-<div id="modo-revision" role="status" style="position:fixed;right:12px;bottom:12px;z-index:9999;background:var(--panel);color:var(--tinta);border:1px solid var(--cloro);border-radius:10px;padding:8px 12px;font:700 13px var(--f-text);box-shadow:0 2px 12px #0008">Vista docente · estaciones desbloqueadas</div>
 </body>
 </html>
