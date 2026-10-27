@@ -5295,6 +5295,7 @@ setInterval(()=>{if(!S.t0)return;const m=Math.floor((Date.now()-S.t0)/60000);$('
 
 /* =================== componentes reutilizables =================== */
 function mezclar(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=b[i];b[i]=b[j];b[j]=t}return b}
+function remezclar(cont){mezclar([...cont.children]).forEach(n=>cont.appendChild(n))}
 function opciones(cont,onPick){
   if(!cont.dataset.fijo)mezclar([...cont.children]).forEach(n=>cont.appendChild(n));
   $$('button',cont).forEach(b=>b.addEventListener('click',()=>{
@@ -5302,40 +5303,52 @@ function opciones(cont,onPick){
     $$('button',cont).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');onPick(b.dataset.v,b);
   }));
 }
-/* pregunta de una sola respuesta correcta, con devolución por opción */
+/* pregunta de una sola respuesta correcta, con devolución por opción.
+   Si eligen mal, la pregunta vuelve a empezar y las opciones se mezclan. */
 function pregunta(cont,fbId,ok,msgs,onOk){
-  opciones($('#'+cont),(v,b)=>{
-    if(v===ok){b.classList.remove('sel');b.classList.add('bien');$('#'+cont).dataset.lock=1;$$('button',$('#'+cont)).forEach(x=>{if(x!==b)x.disabled=true});fb(fbId,msgs[v],'bien');onOk&&onOk()}
-    else{b.classList.remove('sel');b.classList.add('mal');setTimeout(()=>b.classList.remove('mal'),900);fb(fbId,msgs[v],'mal')}
+  const c=$('#'+cont);
+  opciones(c,(v,b)=>{
+    if(v===ok){b.classList.remove('sel');b.classList.add('bien');c.dataset.lock=1;$$('button',c).forEach(x=>{if(x!==b)x.disabled=true});fb(fbId,msgs[v],'bien');onOk&&onOk()}
+    else{b.classList.remove('sel');b.classList.add('mal');fb(fbId,msgs[v]+' Piensen de nuevo: las opciones cambiaron de lugar.','mal');
+      setTimeout(()=>{if(c.dataset.lock)return;b.classList.remove('mal');b.classList.remove('sel');remezclar(c)},1100)}
   });
 }
-/* tarjetas para clasificar en dos categorías */
+/* tarjetas para clasificar en dos categorías. Un error reinicia toda la tanda. */
 function cartas(cont,lista,etq,fbId,onDone){
-  let ok=0;const box=$('#'+cont);
-  mezclar(lista).forEach(c=>{
-    const d=h('div',{class:'carta'},`<span>${c.t}</span><div class="fila"><button class="btn" data-v="1">${etq[0]}</button><button class="btn" data-v="0">${etq[1]}</button></div>`);
-    $$('button',d).forEach(b=>b.addEventListener('click',()=>{
-      if(d.classList.contains('bien'))return;
-      if(+b.dataset.v===c.si){d.classList.remove('mal');d.classList.add('bien');d.querySelector('.fila').innerHTML=`<small>✓ ${c.si?etq[0]:etq[1]}</small>`;ok++;fb(fbId,c.b||'Bien.','bien');
-        if(ok===lista.length){fb(fbId,'Las '+lista.length+' están bien ubicadas.','bien');onDone()}}
-      else{shake(d);fb(fbId,c.m,'mal')}
-    }));box.appendChild(d)});
+  let ok=0,reiniciando=false;const box=$('#'+cont);
+  function build(){ok=0;reiniciando=false;box.innerHTML='';
+    mezclar(lista).forEach(c=>{
+      const d=h('div',{class:'carta'},`<span>${c.t}</span><div class="fila"><button class="btn" data-v="1">${etq[0]}</button><button class="btn" data-v="0">${etq[1]}</button></div>`);
+      $$('button',d).forEach(b=>b.addEventListener('click',()=>{
+        if(reiniciando||d.classList.contains('bien'))return;
+        if(+b.dataset.v===c.si){d.classList.remove('mal');d.classList.add('bien');d.querySelector('.fila').innerHTML=`<small>✓ ${c.si?etq[0]:etq[1]}</small>`;ok++;fb(fbId,c.b||'Bien.','bien');
+          if(ok===lista.length){fb(fbId,'Las '+lista.length+' están bien ubicadas.','bien');onDone()}}
+        else{reiniciando=true;shake(d);fb(fbId,c.m+' Empiecen de nuevo: las tarjetas se mezclaron.','mal');setTimeout(build,1600)}
+      }));box.appendChild(d)});
+  }
+  build();
 }
-/* filas con selector segmentado */
+/* filas con selector segmentado. Un error reinicia todas las filas. */
 function segmentos(cont,filas,ops,fbId,okMsg,onDone){
-  let ok=0;const box=$('#'+cont);
-  mezclar(filas).forEach(f=>{
-    const row=h('div',{class:'cmp__f'},`<span>${f.t}</span><div class="seg">${mezclar(ops).map(o=>`<button data-v="${o[0]}">${o[1]}</button>`).join('')}</div>`);
-    $$('button',row).forEach(b=>b.addEventListener('click',()=>{if(row.classList.contains('bien'))return;$$('button',row).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
-      if(b.dataset.v===f.r){row.classList.remove('mal');row.classList.add('bien');ok++;fb(fbId,f.b||'Bien.','bien');if(ok===filas.length){fb(fbId,okMsg,'bien');onDone()}}
-      else{shake(row);fb(fbId,f.m,'mal')}}));
-    box.appendChild(row)});
+  let ok=0,reiniciando=false;const box=$('#'+cont);
+  function build(){ok=0;reiniciando=false;box.innerHTML='';
+    mezclar(filas).forEach(f=>{
+      const row=h('div',{class:'cmp__f'},`<span>${f.t}</span><div class="seg">${mezclar(ops).map(o=>`<button data-v="${o[0]}">${o[1]}</button>`).join('')}</div>`);
+      $$('button',row).forEach(b=>b.addEventListener('click',()=>{if(reiniciando||row.classList.contains('bien'))return;$$('button',row).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
+        if(b.dataset.v===f.r){row.classList.remove('mal');row.classList.add('bien');ok++;fb(fbId,f.b||'Bien.','bien');if(ok===filas.length){fb(fbId,okMsg,'bien');onDone()}}
+        else{reiniciando=true;shake(row);fb(fbId,f.m+' Empiecen de nuevo: se mezclaron las filas y las opciones.','mal');setTimeout(build,1600)}}));
+      box.appendChild(row)});
+  }
+  build();
 }
-/* fichas y huecos: grupos de huecos aceptan un conjunto, sin repetir */
+/* fichas y huecos: grupos de huecos aceptan un conjunto, sin repetir.
+   Un error devuelve todas las fichas a la bandeja y la remezcla. */
 function huecos(contEcu,contFichas,fichas,grupos,fbId,msgsMal,onDone){
-  const box=$('#'+contFichas);let sel=null;const puestos={};
-  mezclar(fichas).forEach(f=>{const b=h('button',{type:'button','data-f':f},f);b.addEventListener('click',()=>{if(b.classList.contains('usada'))return;$$('button',box).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');sel=f;fb(fbId,'Ahora toquen el hueco donde va «'+f+'».','neu')});box.appendChild(b)});
-  $$('.hueco',$('#'+contEcu)).forEach(hu=>hu.addEventListener('click',()=>{
+  const box=$('#'+contFichas);let sel=null,puestos={},reiniciando=false;
+  const hqs=$$('.hueco',$('#'+contEcu));hqs.forEach(hu=>hu.dataset.ph=hu.textContent);
+  mezclar(fichas).forEach(f=>{const b=h('button',{type:'button','data-f':f},f);b.addEventListener('click',()=>{if(reiniciando||b.classList.contains('usada'))return;$$('button',box).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');sel=f;fb(fbId,'Ahora toquen el hueco donde va «'+f+'».','neu')});box.appendChild(b)});
+  hqs.forEach(hu=>hu.addEventListener('click',()=>{
+    if(reiniciando)return;
     const k=hu.dataset.h;if(puestos[k])return;
     if(!sel){fb(fbId,'Primero toquen una ficha.','neu');return}
     const g=grupos.find(g=>g.h.includes(k));
@@ -5343,7 +5356,8 @@ function huecos(contEcu,contFichas,fichas,grupos,fbId,msgsMal,onDone){
     if(g.ok.includes(sel)&&!yaEnGrupo.includes(sel)){
       puestos[k]=sel;hu.textContent=sel;hu.classList.add('lleno');const b=$(`button[data-f="${sel}"]`,box);b.classList.remove('sel');b.classList.add('usada');sel=null;fb(fbId,'','neu');
       if(Object.keys(puestos).length===grupos.reduce((a,g)=>a+g.h.length,0))onDone();
-    } else {shake(hu);fb(fbId,(msgsMal[sel]&&msgsMal[sel][g.n])||msgsMal['_'+g.n]||'Ese no es su lugar. Piensen de nuevo.','mal')}
+    } else {reiniciando=true;shake(hu);fb(fbId,((msgsMal[sel]&&msgsMal[sel][g.n])||msgsMal['_'+g.n]||'Ese no es su lugar. Piensen de nuevo.')+' Empiecen de nuevo: las fichas vuelven a la bandeja.','mal');
+      setTimeout(()=>{puestos={};hqs.forEach(x=>{x.textContent=x.dataset.ph;x.classList.remove('lleno','mal')});$$('button',box).forEach(x=>x.classList.remove('usada','sel'));remezclar(box);sel=null;reiniciando=false},1600)}
   }));
 }
 
@@ -5434,8 +5448,9 @@ const CEN={dentro:new Set(),on:false,tasa:0,co:0,ag:0,timer:null};
 })();
 const bandejaR=$('#bandejaR');
 mezclar(INGR).forEach(g=>{const b=h('button',{class:'ing','data-id':g.id},`<i style="background:${g.c}"></i>${g.t}`);b.addEventListener('click',()=>{
-  if(CEN.dentro.has(g.id))return;
-  if(!g.ok){b.classList.remove('no');void b.offsetWidth;b.classList.add('no');fb('fbCen',g.m,'mal');return}
+  if(CEN.on||CEN.rein||CEN.dentro.has(g.id))return;
+  if(!g.ok){b.classList.remove('no');void b.offsetWidth;b.classList.add('no');CEN.rein=1;fb('fbCen',g.m+' Empiecen de nuevo: las fichas vuelven a la bandeja.','mal');
+    setTimeout(()=>{CEN.dentro.clear();$('#cIn').innerHTML='';$$('.ing',bandejaR).forEach(x=>x.classList.remove('dentro','no'));remezclar(bandejaR);CEN.rein=0},1600);return}
   CEN.dentro.add(g.id);b.classList.add('dentro');fb('fbCen',g.m,'bien');entraR(g.id);
   if(CEN.dentro.size===2)setTimeout(encenderR,900);
 });bandejaR.appendChild(b)});
@@ -5448,7 +5463,9 @@ function entraR(id){
   }
 }
 function encenderR(){
+  if(CEN.dentro.size<2)return;
   CEN.on=true;R.central.on=1;$('#cIn').innerHTML='';
+  $$('.ing',bandejaR).forEach(x=>x.disabled=true);
   $('#tSale').setAttribute('opacity',1);
   fb('fbCen','¡La central funciona! Con glucosa y oxígeno libera energía para el trabajo de la célula. Además se forman dióxido de carbono y agua, y una parte de la energía se pierde como calor.','bien');
   mostrar('parteR2');actualizarR();marcarListo('central');
@@ -5573,16 +5590,17 @@ const PARTES={ext:'membrana externa',int:'membrana interna',cre:'crestas',mat:'m
   const lab=el('g',{id:'rotLab'},svg);
   svg.RT=RT;
   $('#rotSvg').appendChild(svg);
-  let sel=null,ok=0;const box=$('#fichasM');
-  ['matriz','ADN propio','membrana externa','crestas','membrana interna'].forEach(f=>{const b=h('button',{type:'button','data-f':f},f);b.addEventListener('click',()=>{if(b.classList.contains('usada'))return;$$('button',box).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');sel=f;fb('fbRotM','Ahora toquen la parte de la mitocondria que corresponde a «'+f+'».','neu')});box.appendChild(b)});
+  let sel=null,ok=0,reiniciando=false;const box=$('#fichasM');
+  mezclar(['matriz','ADN propio','membrana externa','crestas','membrana interna']).forEach(f=>{const b=h('button',{type:'button','data-f':f},f);b.addEventListener('click',()=>{if(reiniciando||b.classList.contains('usada'))return;$$('button',box).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');sel=f;fb('fbRotM','Ahora toquen la parte de la mitocondria que corresponde a «'+f+'».','neu')});box.appendChild(b)});
   const PISTA={ext:'Esa es la membrana externa: la envoltura lisa de afuera.',int:'Esa es la membrana interna: la que está justo debajo de la externa y se pliega.',cre:'Esos son los pliegues que la membrana interna forma hacia adentro.',mat:'Ese es el líquido espeso que llena el interior.',adn:'Ese anillo verde es material hereditario propio de la mitocondria.'};
   $$('.zona',svg).forEach(z=>z.addEventListener('click',e=>{
-    e.stopPropagation();const k=z.dataset.z;if(z.classList.contains('puesta'))return;
+    e.stopPropagation();if(reiniciando)return;const k=z.dataset.z;if(z.classList.contains('puesta'))return;
     if(!sel){fb('fbRotM','Primero toquen un nombre.','neu');return}
     if(PARTES[k]===sel){z.classList.add('puesta');const [p,q]=RT[k];el('line',{x1:p[0],y1:p[1]+(p[1]>200?-14:4),x2:q[0],y2:q[1],stroke:'#ffb547','stroke-width':1.5},lab);tx(lab,p[0],p[1],sel,{'text-anchor':'middle',fill:'#ffb547','font-size':14,'font-weight':700});
       const b=$(`button[data-f="${sel}"]`,box);b.classList.remove('sel');b.classList.add('usada');sel=null;ok++;fb('fbRotM','Bien ubicado.','bien');
       if(ok===5){R.mito.rot=1;fb('fbRotM','Las cinco partes están rotuladas.','bien');mostrar('defM');mostrar('bCuantas');marcarListo('mito')}}
-    else{fb('fbRotM','No corresponde. '+PISTA[k],'mal')}
+    else{fb('fbRotM','No corresponde. '+PISTA[k]+' Empiecen de nuevo: los rótulos vuelven a la bandeja.','mal');
+      reiniciando=true;setTimeout(()=>{ok=0;sel=null;lab.innerHTML='';$$('.zona',svg).forEach(x=>x.classList.remove('puesta'));$$('button',box).forEach(x=>x.classList.remove('usada','sel'));remezclar(box);reiniciando=false},1600)}
   }));
 })();
 pregunta('qCuantas','fbCuantas','cor',{
