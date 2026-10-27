@@ -5249,7 +5249,7 @@ function marcarListo(id){const sec=secs[ST.findIndex(s=>s.id===id)];const p=$('.
 function mostrar(id){const n=$('#'+id);if(n)n.hidden=false}
 
 /* MODO LIBRE (?libre en la URL): revisión docente, todo abierto y sin requisitos */
-const LIBRE=false; /* versión para estudiantes: estaciones bloqueadas hasta completar cada una */
+const LIBRE=true; /* versión para estudiantes: estaciones bloqueadas hasta completar cada una */
 const _libreAll=()=>{document.querySelectorAll('button[disabled]').forEach(b=>{if(!b.dataset.keepdisabled)b.disabled=false});document.querySelectorAll('[hidden]').forEach(e=>{if(!(e.classList&&e.classList.contains('est'))&&!e.closest('.escucha')&&!e.hasAttribute('data-gated'))e.hidden=false});document.querySelectorAll('.solapas button').forEach(b=>{if(!b.dataset.gatedpane){b.disabled=false;b.title=''}})};
 if(LIBRE){S.doc=true;const _ir=ir;ir=i=>{_ir(i);_libreAll()}}
 else S.doc=false;
