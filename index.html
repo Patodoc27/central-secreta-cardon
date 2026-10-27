@@ -276,6 +276,7 @@ table.datos td.num{font-family:var(--f-dato);text-align:right}
 .caso{border:1.5px solid var(--linea);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--panel)}
 .caso h4{margin:0;font-family:var(--f-disp);font-size:1.1rem}
 .caso.hecho{border-color:var(--cloro)}
+.caso.mal{border-color:var(--sol)}
 .pasitos{display:flex;flex-wrap:wrap;gap:6px;margin:0}
 .pn{font-size:.78rem;padding:3px 10px;border-radius:99px;border:1px solid var(--linea);color:var(--tenue)}
 .pn.on{border-color:var(--sol);color:var(--sol)}
@@ -5467,7 +5468,17 @@ function pulsoR(){
 /* parte 2: controles y casos */
 const P3={p1:null,p2:null,t1:false,t2:false};
 function pn(id,cls){const e=$('#'+id);e.classList.remove('on','ok');if(cls)e.classList.add(cls)}
-function casoHecho(n){$('#caso'+n).classList.add('hecho');$$('#predR'+n+' button').forEach(b=>b.disabled=true)}
+function casoHecho(n,ok){$('#caso'+n).classList.add(ok?'hecho':'mal');$$('#predR'+n+' button').forEach(b=>b.disabled=true)}
+function reintentar(n){
+  P3['p'+n]=null;P3['t'+n]=false;
+  const res=$('#resR'+n);res.hidden=true;res.innerHTML='';res.className='resC';
+  $('#caso'+n).classList.remove('hecho','mal');
+  $$('#predR'+n+' button').forEach(b=>{b.disabled=false;b.classList.remove('sel')});
+  pn('c'+n+'p1','on');pn('c'+n+'p2','');pn('c'+n+'p3','');
+  ['tGlu','tOx','tLuzR'].forEach(id=>$('#'+id).setAttribute('aria-pressed','true'));
+  fbh('fbR'+n,'El panel volvió al inicio. Vuelvan al paso ① y predigan otra vez.','neu');
+  actualizarR();
+}
 opciones($('#predR1'),v=>{if(P3.t1)return;P3.p1=v;pn('c1p1','ok');pn('c1p2','on');$('#tLuzR').classList.add('atencion');fbh('fbR1','Ahora apaguen la llave <b>Luz</b> en el panel de controles.','neu')});
 opciones($('#predR2'),v=>{if(P3.t2)return;P3.p2=v;pn('c2p1','ok');pn('c2p2','on');$('#tOx').classList.add('atencion');fbh('fbR2','Ahora cierren la llave <b>Oxígeno</b> en el panel de controles.','neu')});
 ['tGlu','tOx','tLuzR'].forEach(id=>$('#'+id).addEventListener('click',e=>{const b=e.currentTarget;b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');actualizarR()}));
@@ -5478,12 +5489,14 @@ function actualizarR(){
   [['mEn',en],['mCo',co],['mAg',ag]].forEach(([id,v])=>{$('#'+id).style.width=v+'%';$('#'+id+'T').textContent=v});
   $('#cGlow').setAttribute('opacity',en/100);$('#tCalor').setAttribute('opacity',en>20?1:0);
   $('#cSol').setAttribute('opacity',l?1:0);$('#cLuna').setAttribute('opacity',l?0:1);$('#cHora').textContent=l?'de día':'de noche';$('#cFondo').setAttribute('fill',l?'#10172a':'#080b16');
-  if(!P3.t1&&P3.p1&&g&&o&&!l){P3.t1=true;pn('c1p2','ok');pn('c1p3','ok');$('#tLuzR').classList.remove('atencion');casoHecho(1);
-    const ok=P3.p1==='igual';$('#resR1').hidden=false;$('#resR1').className='resC'+(ok?'':' mal');
-    $('#resR1').innerHTML='El medidor de energía sigue en <b>100</b>: la central no usa luz, así que funciona igual de día y de noche.'+(ok?' <b>Su predicción coincidió.</b>':' <b>No coincidió con su predicción</b>: la luz la necesita la fábrica de glucosa, no esta central.');fb('fbR1','','neu')}
-  if(!P3.t2&&P3.p2&&g&&!o){P3.t2=true;pn('c2p2','ok');pn('c2p3','ok');$('#tOx').classList.remove('atencion');casoHecho(2);
-    const ok=P3.p2==='casi';$('#resR2').hidden=false;$('#resR2').className='resC'+(ok?'':' mal');
-    $('#resR2').innerHTML='El medidor cae a <b>5</b>: sin oxígeno, la central casi no puede desarmar la glucosa y libera muy poca energía. Si el suelo sigue inundado durante días, las células de la raíz se quedan sin energía y la raíz se daña.'+(ok?' <b>Su predicción coincidió.</b>':' <b>No coincidió con su predicción</b>: no baja un poco, cae casi por completo.');fb('fbR2','','neu')}
+  if(!P3.t1&&P3.p1&&g&&o&&!l){P3.t1=true;pn('c1p2','ok');pn('c1p3','ok');$('#tLuzR').classList.remove('atencion');
+    const ok=P3.p1==='igual';casoHecho(1,ok);$('#resR1').hidden=false;$('#resR1').className='resC'+(ok?'':' mal');
+    $('#resR1').innerHTML='El medidor de energía sigue en <b>100</b>: la central no usa luz, así que funciona igual de día y de noche.'+(ok?' <b>Su predicción coincidió.</b>':' <b>No coincidió con su predicción</b>: la luz la necesita la fábrica de glucosa, no esta central.');
+    if(!ok){$('#resR1').innerHTML+='<br><button type="button" class="btn btn--sol" style="margin-top:10px">Volver a intentar el caso</button>';$('#resR1 .btn').addEventListener('click',()=>reintentar(1))}fb('fbR1','','neu')}
+  if(!P3.t2&&P3.p2&&g&&!o){P3.t2=true;pn('c2p2','ok');pn('c2p3','ok');$('#tOx').classList.remove('atencion');
+    const ok=P3.p2==='casi';casoHecho(2,ok);$('#resR2').hidden=false;$('#resR2').className='resC'+(ok?'':' mal');
+    $('#resR2').innerHTML='El medidor cae a <b>5</b>: sin oxígeno, la central casi no puede desarmar la glucosa y libera muy poca energía. Si el suelo sigue inundado durante días, las células de la raíz se quedan sin energía y la raíz se daña.'+(ok?' <b>Su predicción coincidió.</b>':' <b>No coincidió con su predicción</b>: no baja un poco, cae casi por completo.');
+    if(!ok){$('#resR2').innerHTML+='<br><button type="button" class="btn btn--sol" style="margin-top:10px">Volver a intentar el caso</button>';$('#resR2 .btn').addEventListener('click',()=>reintentar(2))}fb('fbR2','','neu')}
   if(P3.t1&&P3.t2&&!R.central.pred){R.central.pred=1;fb('fbCtl','Los dos casos están probados: la central no necesita luz, pero sin oxígeno casi no libera energía.','bien');mostrar('parteR3');marcarListo('central');return}
   let msg='';
   if(!g)msg='Sin glucosa no hay nada que desarmar: la central se detiene, aunque haya oxígeno.';
